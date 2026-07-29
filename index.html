@@ -6,13 +6,15 @@
     <title>KOODAL STUDIO — Quiet, private digital companions for families</title>
     <meta name="description" content="KOODAL STUDIO is a human-centred design studio creating quiet, compassionate, privacy-first digital companions that help people come together." />
     <meta name="theme-color" content="#FDF8F0" />
+    <link rel="icon" type="image/png" href="image/1111.png" />
+    <link rel="apple-touch-icon" href="image/1111.png" />
 
     <!-- OpenGraph -->
     <meta property="og:title" content="KOODAL STUDIO — Where people come together." />
     <meta property="og:description" content="Quiet, private digital companions for families. Start with Small Moments of Joy — free. Continue with Parent Companion — premium." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://koodalstudio.com" />
-    <meta property="og:image" content="https://koodalstudio.com/og-image.jpg" />
+    <meta property="og:image" content="https://koodalstudio.com/image/1111.png" />
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -22,11 +24,11 @@
             "name": "KOODAL STUDIO",
             "description": "Human-centred design studio creating quiet, compassionate, privacy-first digital companions for families.",
             "url": "https://koodalstudio.com",
-            "logo": "https://koodalstudio.com/logo.png",
+            "logo": "https://koodalstudio.com/image/1111.png",
             "sameAs": [],
             "contactPoint": {
                 "@type": "ContactPoint",
-                "email": "hello@koodalstudio.com",
+                "email": "hellokoodalstudio@gmail.com",
                 "contactType": "Customer Support"
             }
         }
@@ -41,24 +43,24 @@
            ROOT — Design System
            ================================================================ */
         :root {
-            --cream: #FDF8F0;
-            --cream-light: #FFFCF7;
-            --cream-warm: #FAF3E8;
+            --cream: #F3F8F1;
+            --cream-light: #FBFDF9;
+            --cream-warm: #E8F1E5;
             --sage: #7C9E8A;
-            --sage-light: #E8F0EB;
-            --sage-dark: #5A7A68;
+            --sage-light: #E3EFE7;
+            --sage-dark: #4F7360;
             --gold: #B8860B;
             --gold-light: #D4B87A;
             --gold-soft: #F0E8D0;
             --gold-pale: rgba(184, 134, 11, 0.08);
-            --text: #3A3632;
-            --text-light: #7A7570;
-            --text-soft: #A5A09A;
-            --line: #D8D2C8;
-            --line-soft: #E8E2D8;
-            --shadow-sm: 0 2px 12px rgba(69, 69, 69, 0.04);
-            --shadow-md: 0 8px 40px rgba(69, 69, 69, 0.06);
-            --shadow-lg: 0 16px 64px rgba(69, 69, 69, 0.08);
+            --text: #33362F;
+            --text-light: #74796E;
+            --text-soft: #9BA095;
+            --line: #D2DECC;
+            --line-soft: #E3ECE0;
+            --shadow-sm: 0 2px 12px rgba(58, 74, 62, 0.05);
+            --shadow-md: 0 8px 40px rgba(58, 74, 62, 0.07);
+            --shadow-lg: 0 16px 64px rgba(58, 74, 62, 0.10);
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -216,12 +218,22 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(253, 248, 240, 0.92);
+            background: rgba(243, 248, 241, 0.92);
             backdrop-filter: blur(14px) saturate(180%);
             -webkit-backdrop-filter: blur(14px) saturate(180%);
             border-bottom: 1px solid var(--line-soft);
             padding: 10px 0;
             transition: var(--transition);
+        }
+
+        @media print {
+            nav {
+                position: static;
+            }
+            .nav-overlay,
+            .hamburger {
+                display: none !important;
+            }
         }
 
         nav .container {
@@ -236,6 +248,20 @@
             font-size: 1.3rem;
             color: var(--gold);
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.1;
+        }
+
+        .logo-mark {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
             display: flex;
             flex-direction: column;
             line-height: 1.1;
@@ -368,7 +394,7 @@
             padding: 56px 0 72px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(160deg, var(--cream) 0%, var(--gold-soft) 35%, var(--cream) 70%);
+            background: linear-gradient(160deg, var(--cream) 0%, var(--sage-light) 35%, var(--cream) 70%);
         }
 
         .hero::before {
@@ -376,8 +402,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 15% 25%, rgba(184, 134, 11, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 85% 75%, rgba(124, 158, 138, 0.04) 0%, transparent 50%);
+                radial-gradient(circle at 15% 25%, rgba(124, 158, 138, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(184, 134, 11, 0.04) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -448,14 +474,15 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 32px;
+            padding: 15px 34px;
             border-radius: var(--radius-full);
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--sage-dark) 0%, #5C8570 100%);
             color: white;
             font-weight: 600;
             font-size: 0.92rem;
+            letter-spacing: 0.01em;
             transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.25);
+            box-shadow: 0 4px 20px rgba(79, 115, 96, 0.32);
             border: none;
             cursor: pointer;
             font-family: var(--font-body);
@@ -463,31 +490,32 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(184, 134, 11, 0.35);
-            background: #9A7610;
+            box-shadow: 0 10px 34px rgba(79, 115, 96, 0.42);
+            background: linear-gradient(135deg, #416050 0%, var(--sage-dark) 100%);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 28px;
+            padding: 13px 30px;
             border-radius: var(--radius-full);
             background: var(--cream-light);
-            color: var(--text);
-            font-weight: 500;
+            color: var(--sage-dark);
+            font-weight: 600;
             font-size: 0.92rem;
-            border: 1.5px solid var(--line);
+            border: 1.5px solid var(--sage);
             transition: var(--transition);
             cursor: pointer;
             font-family: var(--font-body);
         }
 
         .btn-secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: var(--gold-soft);
+            border-color: var(--sage-dark);
+            color: white;
+            background: var(--sage-dark);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(79, 115, 96, 0.25);
         }
 
         .btn-ghost {
@@ -518,9 +546,19 @@
             opacity: 0;
         }
 
-        .hero-illustration svg {
+        .hero-illustration-frame {
             width: 100%;
             max-width: 440px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: var(--cream-light);
+            border: 1px solid var(--line-soft);
+        }
+
+        .hero-illustration-frame img {
+            display: block;
+            width: 100%;
             height: auto;
         }
 
@@ -541,8 +579,9 @@
                 justify-content: center;
             }
 
-            .hero-illustration svg {
+            .hero-illustration-frame {
                 max-width: 300px;
+                margin: 0 auto;
             }
         }
 
@@ -608,6 +647,34 @@
             box-shadow: var(--shadow-md);
             border-color: var(--gold-light);
             transform: translateY(-3px);
+        }
+
+        /* ----------------------------------------------------------------
+           TOPIC COLOR CARDS — a different soft background per category,
+           so each idea is easy to tell apart at a glance.
+           ---------------------------------------------------------------- */
+        .card-sage {
+            background: #EAF3EC;
+            border-color: #CFE3D5;
+        }
+        .card-gold {
+            background: #FAF3E3;
+            border-color: #EAD9AF;
+        }
+        .card-blue {
+            background: #E7F1F5;
+            border-color: #C9DFE7;
+        }
+        .card-rose {
+            background: #F7ECE9;
+            border-color: #E9D2CB;
+        }
+        .card-sky {
+            background: #EAF0F7;
+            border-color: #CFDCEC;
+        }
+        .card-sage:hover, .card-gold:hover, .card-blue:hover, .card-rose:hover, .card-sky:hover {
+            border-color: var(--sage-dark);
         }
 
         .product-card .card-badge {
@@ -697,10 +764,10 @@
         }
 
         .product-card .card-actions .btn-sm {
-            padding: 10px 24px;
-            font-size: 0.82rem;
+            padding: 11px 26px;
+            font-size: 0.84rem;
             border-radius: var(--radius-full);
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             cursor: pointer;
             font-family: var(--font-body);
@@ -708,27 +775,28 @@
         }
 
         .product-card .card-actions .btn-sm.primary {
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, #A67609 100%);
             color: white;
-            box-shadow: 0 4px 16px rgba(184, 134, 11, 0.2);
+            box-shadow: 0 4px 18px rgba(184, 134, 11, 0.28);
         }
 
         .product-card .card-actions .btn-sm.primary:hover {
-            background: #9A7610;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(184, 134, 11, 0.3);
+            background: linear-gradient(135deg, #9A7610 0%, var(--gold) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(184, 134, 11, 0.36);
         }
 
         .product-card .card-actions .btn-sm.secondary {
-            background: var(--cream-light);
-            color: var(--text);
-            border: 1.5px solid var(--line);
+            background: var(--sage-dark);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 18px rgba(79, 115, 96, 0.28);
         }
 
         .product-card .card-actions .btn-sm.secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: var(--gold-soft);
+            background: #416050;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(79, 115, 96, 0.36);
         }
 
         .product-card .card-footer {
@@ -1097,6 +1165,65 @@
         }
 
         /* ================================================================
+           DISCLAIMER
+           ================================================================ */
+        .disclaimer-box {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            max-width: 760px;
+            margin: 0 auto;
+            background: var(--cream-light);
+            border: 1.5px solid var(--gold-light);
+            border-radius: var(--radius-lg);
+            padding: 26px 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .disclaimer-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            background: var(--gold-soft);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .disclaimer-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-text p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .disclaimer-text strong {
+            color: var(--text);
+        }
+
+        @media (max-width: 600px) {
+            .disclaimer-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 22px 20px;
+            }
+        }
+
+        /* ================================================================
            CONTACT
            ================================================================ */
         .contact-row {
@@ -1138,6 +1265,26 @@
             margin: 0;
         }
 
+        .contact-note {
+            max-width: 560px;
+            margin: 24px auto 0;
+            text-align: center;
+        }
+
+        .contact-note p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin-bottom: 10px;
+        }
+
+        .contact-note .contact-response {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            margin-bottom: 0;
+            margin-top: 14px;
+        }
+
         @media (max-width: 480px) {
             .contact-row {
                 grid-template-columns: 1fr;
@@ -1160,6 +1307,44 @@
             grid-template-columns: 2fr 1fr 1fr;
             gap: 32px;
             align-items: start;
+        }
+
+        .ownership {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+        }
+
+        .ownership-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(212, 184, 122, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ownership strong {
+            display: block;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .ownership p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.6;
+            margin: 0;
         }
 
         footer .brand h3 {
@@ -1325,8 +1510,11 @@
     <nav id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <a href="#" class="logo" aria-label="KOODAL STUDIO home">
-                KOODAL
-                <span class="sub">Studio</span>
+                <img src="image/1111.png" alt="KOODAL Studio" class="logo-mark" />
+                <span class="logo-text">
+                    KOODAL
+                    <span class="sub">Studio</span>
+                </span>
             </a>
 
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -1358,15 +1546,16 @@
                     <div class="studio-label">KOODAL STUDIO</div>
                     <div class="koodal-word">Where people<br />come together.</div>
                     <div class="mission-line">
-                        Quiet, private <span class="gold">digital companions</span><br class="hidden-mobile" />
-                        for families.
+                        Simple, private tools <span class="gold">made for families</span><br class="hidden-mobile" />
+                        who just want to hold onto the good moments.
                     </div>
                     <p class="description">
-                        We create <strong>compassionate digital companions</strong> —
-                        gentle tools that help families notice the moments that matter.
+                        We're a small studio building tools that help families notice and keep
+                        the small moments — nothing clinical, nothing complicated.
                         <br /><br />
-                        Start with <strong>Small Moments of Joy</strong> — a free printable companion.
-                        Continue with <strong>Parent Companion</strong> — a premium offline app.
+                        Start free with <strong>Small Moments of Joy</strong>, a printable companion
+                        you can use today. When you want something a bit more, <strong>Parent Companion</strong>
+                        is our offline app, built for parents who want a quiet place to reflect.
                     </p>
                     <div class="hero-actions">
                         <a href="#products" class="btn-primary">Explore Products →</a>
@@ -1374,74 +1563,10 @@
                     </div>
                 </div>
 
-                <div class="hero-illustration" aria-hidden="true">
-                    <svg viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="heroBgK" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#FDF8F0" stop-opacity="0.6"/>
-                                <stop offset="100%" stop-color="#F0E8D0" stop-opacity="0.15"/>
-                            </linearGradient>
-                            <linearGradient id="goldFadeK" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#B8860B" stop-opacity="0.10"/>
-                                <stop offset="100%" stop-color="#B8860B" stop-opacity="0.01"/>
-                            </linearGradient>
-                        </defs>
-
-                        <rect width="440" height="360" fill="url(#heroBgK)" rx="20"/>
-
-                        <!-- Flowing confluence lines -->
-                        <path d="M180 220 C195 190 215 175 235 170 C255 165 275 175 290 200"
-                        stroke="#B8860B" stroke-width="2.5" stroke-linecap="round" opacity="0.12" fill="none"/>
-                        <path d="M190 235 C205 210 220 198 238 193 C256 188 274 196 287 218"
-                        stroke="#B8860B" stroke-width="2" stroke-linecap="round" opacity="0.08" fill="none"/>
-                        <path d="M200 248 C212 228 224 218 238 213 C252 208 268 214 278 232"
-                        stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" opacity="0.06" fill="none"/>
-
-                        <!-- Central meeting point -->
-                        <circle cx="238" cy="198" r="8" fill="#B8860B" opacity="0.08"/>
-                        <circle cx="238" cy="198" r="16" stroke="#B8860B" stroke-width="1.2" opacity="0.06" fill="none"/>
-
-                        <!-- Family figures gathering -->
-                        <g transform="translate(120, 255)">
-                            <circle cx="0" cy="-8" r="10" fill="#7C9E8A" opacity="0.30"/>
-                            <rect x="-6" y="2" width="12" height="22" rx="4" fill="#7C9E8A" opacity="0.20"/>
-                            <line x1="-6" y1="14" x2="-14" y2="24" stroke="#7C9E8A" stroke-width="2.5" opacity="0.20" stroke-linecap="round"/>
-                            <line x1="6" y1="14" x2="14" y2="24" stroke="#7C9E8A" stroke-width="2.5" opacity="0.20" stroke-linecap="round"/>
-                            <line x1="-3" y1="24" x2="-8" y2="36" stroke="#7C9E8A" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
-                            <line x1="3" y1="24" x2="8" y2="36" stroke="#7C9E8A" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
-                        </g>
-
-                        <g transform="translate(340, 255)">
-                            <circle cx="0" cy="-8" r="10" fill="#D4B87A" opacity="0.25"/>
-                            <rect x="-6" y="2" width="12" height="22" rx="4" fill="#D4B87A" opacity="0.16"/>
-                            <line x1="-6" y1="14" x2="-14" y2="24" stroke="#D4B87A" stroke-width="2.5" opacity="0.16" stroke-linecap="round"/>
-                            <line x1="6" y1="14" x2="14" y2="24" stroke="#D4B87A" stroke-width="2.5" opacity="0.16" stroke-linecap="round"/>
-                            <line x1="-3" y1="24" x2="-8" y2="36" stroke="#D4B87A" stroke-width="2.5" opacity="0.14" stroke-linecap="round"/>
-                            <line x1="3" y1="24" x2="8" y2="36" stroke="#D4B87A" stroke-width="2.5" opacity="0.14" stroke-linecap="round"/>
-                        </g>
-
-                        <g transform="translate(230, 270)">
-                            <circle cx="0" cy="-6" r="8" fill="#B8DDE8" opacity="0.25"/>
-                            <rect x="-5" y="2" width="10" height="18" rx="3" fill="#B8DDE8" opacity="0.16"/>
-                            <line x1="-5" y1="12" x2="-10" y2="22" stroke="#B8DDE8" stroke-width="2" opacity="0.14" stroke-linecap="round"/>
-                            <line x1="5" y1="12" x2="10" y2="22" stroke="#B8DDE8" stroke-width="2" opacity="0.14" stroke-linecap="round"/>
-                        </g>
-
-                        <!-- Small leaves / organic elements -->
-                        <text x="70" y="300" font-size="18" opacity="0.04">✦</text>
-                        <text x="390" y="295" font-size="18" opacity="0.04">✦</text>
-                        <text x="60" y="140" font-size="14" opacity="0.04">✦</text>
-                        <text x="380" y="135" font-size="14" opacity="0.04">✦</text>
-
-                        <!-- Hearts -->
-                        <text x="210" y="118" font-size="16" opacity="0.08">❤️</text>
-                        <text x="150" y="145" font-size="13" opacity="0.06">❤️</text>
-                        <text x="290" y="140" font-size="13" opacity="0.06">❤️</text>
-
-                        <!-- KOODAL wordmark -->
-                        <text x="220" y="335" font-family="'Playfair Display', serif" font-size="16" fill="#B8860B" opacity="0.20" text-anchor="middle" font-weight="700" letter-spacing="0.04em">KOODAL</text>
-                        <text x="220" y="350" font-family="'Inter', sans-serif" font-size="7.5" fill="#B8860B" opacity="0.12" text-anchor="middle" letter-spacing="2.5">WHERE PEOPLE COME TOGETHER</text>
-                    </svg>
+                <div class="hero-illustration">
+                    <div class="hero-illustration-frame">
+                        <img src="image/3333.jpg" alt="A parent and child reading together, a quiet moment of connection" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -1455,20 +1580,20 @@
             <div class="section-header">
                 <span class="badge">✦ Our Products</span>
                 <h2>Quiet companions for <span class="gold">families</span></h2>
-                <p>Two ways to begin. One free. One premium. Both built with care.</p>
+                <p>Two ways to begin — one free, one paid. Both made with the same care.</p>
             </div>
 
             <div class="product-grid">
                 <!-- Premium: Parent Companion -->
-                <div class="product-card fade-up">
+                <div class="product-card card-gold fade-up">
                     <span class="card-badge premium">⭐ Premium</span>
                     <span class="card-icon">🌿</span>
                     <h3>Parent Companion</h3>
                     <p class="card-sub">Offline Digital Reflection Companion</p>
                     <p class="card-desc">
-                        A gentle digital companion for parents of autistic children.
-                        Private, offline, and designed to help you notice the small
-                        moments of hope.
+                        An offline app for parents of autistic children. It stays on your
+                        device, takes about two minutes a day, and helps you hold onto the
+                        small moments that give you hope.
                     </p>
                     <div class="card-features">
                         <span>🔒 Private</span>
@@ -1484,15 +1609,14 @@
                 </div>
 
                 <!-- Free: Small Moments of Joy -->
-                <div class="product-card fade-up fade-up-d1">
+                <div class="product-card card-sage fade-up fade-up-d1">
                     <span class="card-badge free">🎁 Free</span>
                     <span class="card-icon">📖</span>
                     <h3>Small Moments of Joy</h3>
                     <p class="card-sub">31‑Day Printable Reflection Companion</p>
                     <p class="card-desc">
-                        A free printable companion helping families notice the
-                        small moments that matter. The perfect entry point into
-                        the KOODAL ecosystem.
+                        A free, printable companion for 31 days. No app, no login —
+                        just paper and a few quiet minutes to notice what's good.
                     </p>
                     <div class="card-features">
                         <span>🖨️ Printable</span>
@@ -1508,7 +1632,7 @@
             </div>
 
             <p style="text-align:center; margin-top:16px; font-size:0.8rem; color:var(--text-soft);">
-                ✦ Both products are private, human-centred, and built with care ✦
+                ✦ Both are private by design, and both were made with real families in mind ✦
             </p>
         </div>
     </section>
@@ -1526,7 +1650,7 @@
 
             <div class="journey-flow">
                 <!-- Step 1 -->
-                <div class="journey-step fade-up">
+                <div class="journey-step card-blue fade-up">
                     <span class="step-num">01</span>
                     <div class="step-content">
                         <h4>Download</h4>
@@ -1541,7 +1665,7 @@
                 </div>
 
                 <!-- Step 2 -->
-                <div class="journey-step fade-up fade-up-d1">
+                <div class="journey-step card-sage fade-up fade-up-d1">
                     <span class="step-num">02</span>
                     <div class="step-content">
                         <h4>Enjoy it</h4>
@@ -1556,11 +1680,11 @@
                 </div>
 
                 <!-- Step 3 -->
-                <div class="journey-step fade-up fade-up-d2">
+                <div class="journey-step card-gold fade-up fade-up-d2">
                     <span class="step-num">03</span>
                     <div class="step-content">
-                        <h4>Need something interactive?</h4>
-                        <p>Move to <strong>Parent Companion</strong> — the premium offline app.</p>
+                        <h4>Want something more?</h4>
+                        <p>Try <strong>Parent Companion</strong>, our offline app, when you're ready.</p>
                     </div>
                 </div>
 
@@ -1571,11 +1695,11 @@
                 </div>
 
                 <!-- Step 4 -->
-                <div class="journey-step fade-up fade-up-d3">
+                <div class="journey-step card-rose fade-up fade-up-d3">
                     <span class="step-num">04</span>
                     <div class="step-content">
-                        <h4>Future companions</h4>
-                        <p>More quiet, compassionate tools are being built — always with privacy first.</p>
+                        <h4>What's next</h4>
+                        <p>We're working on more tools like this — always private, always careful.</p>
                     </div>
                 </div>
             </div>
@@ -1594,22 +1718,22 @@
             </div>
 
             <div class="promise-grid">
-                <div class="promise-item fade-up">
+                <div class="promise-item card-blue fade-up">
                     <span class="icon">🔒</span>
                     <h4>Privacy First</h4>
                     <p>No account. No login. No cloud. Your data stays on your device.</p>
                 </div>
-                <div class="promise-item fade-up fade-up-d1">
+                <div class="promise-item card-sage fade-up fade-up-d1">
                     <span class="icon">📱</span>
                     <h4>Works Offline</h4>
                     <p>Use it anywhere, anytime — even without an internet connection.</p>
                 </div>
-                <div class="promise-item fade-up fade-up-d2">
+                <div class="promise-item card-rose fade-up fade-up-d2">
                     <span class="icon">💛</span>
                     <h4>Your Data Stays Yours</h4>
                     <p>We never collect, analyse, or share your personal information.</p>
                 </div>
-                <div class="promise-item fade-up fade-up-d3">
+                <div class="promise-item card-gold fade-up fade-up-d3">
                     <span class="icon">🌿</span>
                     <h4>Built With Compassion</h4>
                     <p>Created from lived experience — not clinical theory or marketing hype.</p>
@@ -1629,14 +1753,14 @@
                 <p>We're not in a hurry. Every companion we create takes time and care.</p>
             </div>
 
-            <div class="growing-box">
+            <div class="growing-box card-sage">
                 <span class="icon">🌳</span>
                 <h3>We're growing — gently.</h3>
                 <div class="sub">More companions are on the way.</div>
                 <p>
-                    We believe in building slowly, carefully, and with deep intention.
-                    Each new companion is designed to help families connect — quietly,
-                    privately, and meaningfully.
+                    We build slowly and carefully, mostly just one person doing the work.
+                    Each new tool is meant to help families stay connected, without adding
+                    more noise to their lives.
                 </p>
                 <div class="future-pills">
                     <span><span class="dot">·</span> Memory Keeper</span>
@@ -1659,7 +1783,7 @@
             <div class="section-header">
                 <span class="badge">🌿 Philosophy</span>
                 <h2>Where people come <span class="gold">together</span></h2>
-                <p>Everything we build exists to help people come together — with their families, memories, possibilities, and futures.</p>
+                <p>Everything we make is meant to help people stay connected — to their families, their memories, and what's ahead.</p>
             </div>
 
             <div style="max-width:640px; margin:0 auto; background:var(--cream-light); border-radius:var(--radius-lg); padding:32px 36px; border:1px solid var(--line-soft); text-align:center;">
@@ -1675,8 +1799,8 @@
                     gatherings of people, the confluence of rivers, and the meeting of hearts.
                 </p>
                 <p style="color:var(--text-light); font-size:0.95rem; line-height:1.8; margin-top:8px;">
-                    We build <strong>human-centred experiences</strong> — quiet companions
-                    that help families stay connected across distance, time, and circumstance.
+                    We build tools that help families stay connected, no matter the
+                    distance or the kind of day they're having.
                 </p>
                 <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:12px;">
                     <span style="display:inline-block; padding:4px 16px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(184,134,11,0.1); color:var(--gold); font-size:0.75rem; font-weight:500;">🔒 Private by Design</span>
@@ -1725,40 +1849,61 @@
                     </div>
                 </div>
                 <div class="visual">
-                    <svg viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="aboutBgK" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#B8860B" stop-opacity="0.04"/>
-                                <stop offset="100%" stop-color="#B8860B" stop-opacity="0.01"/>
-                            </linearGradient>
+                            <radialGradient id="aboutBgK" cx="50%" cy="45%" r="65%">
+                                <stop offset="0%" stop-color="#E3EFE7" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#F3F8F1" stop-opacity="1"/>
+                            </radialGradient>
+                            <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#33362F" flood-opacity="0.12"/>
+                            </filter>
                         </defs>
 
-                        <rect width="340" height="280" fill="url(#aboutBgK)" rx="16"/>
+                        <rect width="340" height="300" fill="url(#aboutBgK)" rx="20"/>
 
-                        <!-- Tree trunk -->
-                        <path d="M170 260 C170 218 166 198 170 178" stroke="#B8860B" stroke-width="3" stroke-linecap="round" opacity="0.12"/>
+                        <!-- connecting lines from center to each value node -->
+                        <line x1="170" y1="150" x2="170" y2="80" stroke="#BFD1C2" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="250" y2="122" stroke="#BFD1C2" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="250" y2="202" stroke="#BFD1C2" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="170" y2="238" stroke="#BFD1C2" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="90" y2="202" stroke="#BFD1C2" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="90" y2="122" stroke="#BFD1C2" stroke-width="1.75"/>
 
-                        <!-- Branches -->
-                        <path d="M170 193 C148 172 126 162 106 156" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" opacity="0.10"/>
-                        <path d="M170 188 C192 168 214 158 234 152" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" opacity="0.10"/>
-                        <path d="M170 203 C158 183 138 176 118 174" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" opacity="0.06"/>
-                        <path d="M170 198 C182 178 202 172 222 168" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" opacity="0.06"/>
+                        <!-- center hub -->
+                        <circle cx="170" cy="150" r="34" fill="#4F7360" filter="url(#nodeShadow)"/>
+                        <text x="170" y="146" font-family="'Playfair Display', serif" font-size="12.5" fill="#FBFDF9" text-anchor="middle" font-weight="700" letter-spacing="0.02em">KOODAL</text>
+                        <text x="170" y="160" font-family="'Inter', sans-serif" font-size="6" fill="#E3EFE7" text-anchor="middle" letter-spacing="1.5">OUR VALUES</text>
 
-                        <!-- Leaves -->
-                        <circle cx="106" cy="156" r="20" fill="#B8860B" opacity="0.05"/>
-                        <circle cx="234" cy="152" r="22" fill="#B8860B" opacity="0.05"/>
-                        <circle cx="118" cy="174" r="14" fill="#D4B87A" opacity="0.04"/>
-                        <circle cx="222" cy="168" r="16" fill="#D4B87A" opacity="0.04"/>
-                        <circle cx="170" cy="140" r="26" fill="#B8860B" opacity="0.04"/>
+                        <!-- Privacy — blue -->
+                        <circle cx="170" cy="60" r="29" fill="#E7F1F5" stroke="#C9DFE7" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="170" y="56" font-size="18" text-anchor="middle">🔒</text>
+                        <text x="170" y="98" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Privacy</text>
 
-                        <!-- Hearts -->
-                        <text x="98" y="152" font-size="14" opacity="0.10">❤️</text>
-                        <text x="226" y="147" font-size="14" opacity="0.10">❤️</text>
-                        <text x="162" y="135" font-size="14" opacity="0.07">❤️</text>
+                        <!-- Compassion — rose -->
+                        <circle cx="256" cy="112" r="29" fill="#F7ECE9" stroke="#E9D2CB" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="256" y="108" font-size="18" text-anchor="middle">💛</text>
+                        <text x="256" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Compassion</text>
 
-                        <!-- KOODAL -->
-                        <text x="170" y="250" font-family="'Playfair Display', serif" font-size="14" fill="#B8860B" opacity="0.20" text-anchor="middle" font-weight="600">KOODAL</text>
-                        <text x="170" y="263" font-family="'Inter', sans-serif" font-size="6.5" fill="#B8860B" opacity="0.12" text-anchor="middle" letter-spacing="2">HUMAN-CENTRED EXPERIENCES</text>
+                        <!-- Trust — gold -->
+                        <circle cx="256" cy="205" r="29" fill="#FAF3E3" stroke="#EAD9AF" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="256" y="201" font-size="18" text-anchor="middle">🤝</text>
+                        <text x="256" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Trust</text>
+
+                        <!-- Calm — sage -->
+                        <circle cx="170" cy="248" r="29" fill="#EAF3EC" stroke="#CFE3D5" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="170" y="244" font-size="18" text-anchor="middle">🌿</text>
+                        <text x="170" y="286" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Calm</text>
+
+                        <!-- Reflection — sky -->
+                        <circle cx="84" cy="205" r="29" fill="#EAF0F7" stroke="#CFDCEC" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="84" y="201" font-size="18" text-anchor="middle">🕊️</text>
+                        <text x="84" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Reflection</text>
+
+                        <!-- Connection — soft mint -->
+                        <circle cx="84" cy="112" r="29" fill="#EFF7EA" stroke="#D7E8C9" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <text x="84" y="108" font-size="18" text-anchor="middle">🔗</text>
+                        <text x="84" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#33362F" text-anchor="middle" font-weight="700">Connection</text>
                     </svg>
                 </div>
             </div>
@@ -1772,31 +1917,28 @@
         <div class="container">
             <div class="section-header">
                 <span class="badge">📖 Stories</span>
-                <h2>From parents, for <span class="gold">parents</span></h2>
-                <p>Real words from real families. Shared anonymously, with permission.</p>
+                <h2>The kind of thing parents <span class="gold">tell us</span></h2>
+                <p>We're just getting started, so these are reflections of common experiences we've heard, not verified user quotes yet. Once real stories come in, we'll share those instead.</p>
             </div>
 
             <div class="stories-grid">
-                <div class="story-card fade-up">
+                <div class="story-card card-blue fade-up">
                     <p class="story-text">
                         "I used to feel so alone. Then I read another parent's story — and for the first time,
                         I felt understood. That's why I'm here."
                     </p>
-                    <p class="story-author">— Anonymous Parent <span class="tag">KOODAL user</span></p>
                 </div>
-                <div class="story-card fade-up fade-up-d1">
+                <div class="story-card card-sage fade-up fade-up-d1">
                     <p class="story-text">
                         "The hardest part was not knowing if my child understood me. Then one day,
                         they showed me they did — without a single word."
                     </p>
-                    <p class="story-author">— Anonymous Parent <span class="tag">KOODAL user</span></p>
                 </div>
-                <div class="story-card fade-up fade-up-d2">
+                <div class="story-card card-gold fade-up fade-up-d2">
                     <p class="story-text">
                         "This companion helped me see that progress isn't always big. Sometimes it's a smile,
                         a new sound, or a quiet moment."
                     </p>
-                    <p class="story-author">— Anonymous Parent <span class="tag">KOODAL user</span></p>
                 </div>
             </div>
 
@@ -1805,6 +1947,31 @@
                     Share Your Story →
                 </a>
                 <p style="font-size:0.78rem; color:var(--text-soft); margin-top:4px;">Share anonymously — we'll never ask for your name.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+    DISCLAIMER
+    ================================================================ -->
+    <section class="section section-alt" id="disclaimer">
+        <div class="container">
+            <div class="disclaimer-box">
+                <span class="disclaimer-icon">🩺</span>
+                <div class="disclaimer-text">
+                    <h3>A note on support, not medical care</h3>
+                    <p>
+                        Parent Companion, Small Moments of Joy, and everything else we make are just
+                        reflection tools — quiet spaces to notice and write down small moments. They're
+                        <strong> not</strong> medical devices, they can't diagnose anything, and they're not
+                        a substitute for therapy or clinical care.
+                    </p>
+                    <p>
+                        If you're worried about your child's development, your own wellbeing, or any
+                        health matter, please talk to a doctor, therapist, or other qualified
+                        professional. We're here to support that journey, not replace it.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -1821,21 +1988,22 @@
             </div>
 
             <div class="contact-row">
-                <div class="contact-item">
+                <div class="contact-item card-blue">
                     <span class="icon">📧</span>
                     <h4>Email</h4>
-                    <p>hello@koodalstudio.com</p>
+                    <p><a href="mailto:hellokoodalstudio@gmail.com" style="color:inherit; text-decoration:none;">hellokoodalstudio@gmail.com</a></p>
                 </div>
-                <div class="contact-item">
+                <div class="contact-item card-sage">
                     <span class="icon">🌐</span>
                     <h4>Website</h4>
                     <p>koodalstudio.com</p>
-                    <p style="font-size:0.7rem; color:var(--text-soft);">Coming soon</p>
                 </div>
             </div>
 
-            <div style="text-align:center; margin-top:12px; font-size:0.82rem; color:var(--text-soft);">
-                <p>For support with any KOODAL product, email us and we'll respond within 24 hours.</p>
+            <div class="contact-note">
+                <p>Need a version of Parent Companion built around your family, your organization, or your language? Write to us — we do take on custom requests.</p>
+                <p>And if you just need someone to talk to, or a bit of guidance that isn't medical advice, reach out anyway. We're not doctors, so we can't treat or diagnose anything — but we'll listen, and we'll help however we honestly can.</p>
+                <p class="contact-response">We read every email ourselves and usually reply within 24 hours.</p>
             </div>
         </div>
     </section>
@@ -1846,11 +2014,14 @@
     <footer>
         <div class="container">
             <div class="brand">
-                <h3>KOODAL</h3>
-                <div class="tagline">Where People Come Together.</div>
+                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                    <img src="image/1111.png" alt="" style="width:28px; height:28px; object-fit:contain;" />
+                    KOODAL
+                </h3>
+                <div class="tagline" style="margin-bottom:10px;">Where People Come Together.</div>
                 <div class="philosophy">
                     <strong>KOODAL STUDIO</strong> — Human-Centred Experiences.<br />
-                    <span style="opacity:0.4; font-size:0.75rem;">Parent Companion · Small Moments of Joy · Future</span>
+                    <span style="opacity:0.4; font-size:0.75rem; display:block; margin-top:6px;">Parent Companion · Small Moments of Joy · Future</span>
                 </div>
             </div>
 
@@ -1868,14 +2039,21 @@
                 <a href="#contact">Contact</a>
             </div>
 
+            <div class="ownership">
+                <span class="ownership-icon">©️</span>
+                <div>
+                    <strong>© 2026 KOODAL STUDIO. All rights reserved.</strong>
+                    <p>KOODAL, the KOODAL mark, and all product names, designs, and content on this site are the intellectual property of KOODAL STUDIO.</p>
+                </div>
+            </div>
+
             <div class="bottom">
-                <p>© 2025 KOODAL STUDIO. All rights reserved.</p>
                 <div class="legal">
                     <a href="#contact">Privacy Policy</a>
                     <a href="#contact">Terms of Use</a>
-                    <a href="#contact">Medical Disclaimer</a>
-                    <span class="koodal-mark">✦ A KOODAL product ✦</span>
+                    <a href="#disclaimer">Medical Disclaimer</a>
                 </div>
+                <span class="koodal-mark">✦ A KOODAL product ✦</span>
             </div>
         </div>
     </footer>
