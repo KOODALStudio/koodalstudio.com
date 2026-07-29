@@ -654,27 +654,27 @@
            so each idea is easy to tell apart at a glance.
            ---------------------------------------------------------------- */
         .card-sage {
-            background: #EAF3EC;
-            border-color: #CFE3D5;
+            background: #EAF3EC !important;
+            border-color: #CFE3D5 !important;
         }
         .card-gold {
-            background: #FAF3E3;
-            border-color: #EAD9AF;
+            background: #FAF3E3 !important;
+            border-color: #EAD9AF !important;
         }
         .card-blue {
-            background: #E7F1F5;
-            border-color: #C9DFE7;
+            background: #E7F1F5 !important;
+            border-color: #C9DFE7 !important;
         }
         .card-rose {
-            background: #F7ECE9;
-            border-color: #E9D2CB;
+            background: #F7ECE9 !important;
+            border-color: #E9D2CB !important;
         }
         .card-sky {
-            background: #EAF0F7;
-            border-color: #CFDCEC;
+            background: #EAF0F7 !important;
+            border-color: #CFDCEC !important;
         }
         .card-sage:hover, .card-gold:hover, .card-blue:hover, .card-rose:hover, .card-sky:hover {
-            border-color: var(--sage-dark);
+            border-color: var(--sage-dark) !important;
         }
 
         .product-card .card-badge {
@@ -850,6 +850,23 @@
             color: var(--gold);
             opacity: 0.4;
             min-width: 28px;
+        }
+
+        .journey-step .step-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(48, 53, 47, 0.08);
+        }
+
+        .journey-step .step-icon svg {
+            width: 20px;
+            height: 20px;
         }
 
         .journey-step .step-content {
@@ -1296,7 +1313,7 @@
            FOOTER
            ================================================================ */
         footer {
-            background: var(--text);
+            background: #243C32;
             color: var(--cream);
             padding: 44px 0 24px;
             margin-top: 12px;
@@ -1316,8 +1333,8 @@
             gap: 14px;
             margin-top: 20px;
             padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-md);
         }
 
@@ -1327,7 +1344,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(212, 184, 122, 0.15);
+            background: rgba(230, 197, 107, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1342,7 +1359,7 @@
 
         .ownership p {
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.68);
             line-height: 1.6;
             margin: 0;
         }
@@ -1357,7 +1374,7 @@
         footer .brand .tagline {
             font-size: 0.85rem;
             color: var(--cream-warm);
-            opacity: 0.7;
+            opacity: 0.92;
             font-style: italic;
             font-family: var(--font-heading);
             margin-bottom: 4px;
@@ -1365,7 +1382,7 @@
 
         footer .brand .philosophy {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.45);
+            color: rgba(255, 255, 255, 0.72);
             max-width: 32ch;
             line-height: 1.7;
             font-weight: 300;
@@ -1382,20 +1399,20 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.75);
             margin-bottom: 6px;
         }
 
         footer .col a {
             display: block;
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.78);
             transition: var(--transition);
             padding: 2px 0;
         }
 
         footer .col a:hover {
-            color: var(--cream);
+            color: var(--gold-light);
         }
 
         footer .bottom {
@@ -1423,19 +1440,19 @@
         }
 
         footer .bottom .legal a {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.65);
             transition: var(--transition);
         }
 
         footer .bottom .legal a:hover {
-            color: var(--cream);
+            color: var(--gold-light);
         }
 
         footer .bottom .koodal-mark {
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             color: var(--gold-light);
-            opacity: 0.4;
+            opacity: 0.85;
             letter-spacing: 0.06em;
             font-weight: 500;
         }
@@ -1651,6 +1668,9 @@
             <div class="journey-flow">
                 <!-- Step 1 -->
                 <div class="journey-step card-blue fade-up">
+                    <span class="step-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#355C4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+                    </span>
                     <span class="step-num">01</span>
                     <div class="step-content">
                         <h4>Download</h4>
@@ -1666,6 +1686,9 @@
 
                 <!-- Step 2 -->
                 <div class="journey-step card-sage fade-up fade-up-d1">
+                    <span class="step-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#355C4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></svg>
+                    </span>
                     <span class="step-num">02</span>
                     <div class="step-content">
                         <h4>Enjoy it</h4>
@@ -1681,6 +1704,9 @@
 
                 <!-- Step 3 -->
                 <div class="journey-step card-gold fade-up fade-up-d2">
+                    <span class="step-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#355C4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+                    </span>
                     <span class="step-num">03</span>
                     <div class="step-content">
                         <h4>Want something more?</h4>
@@ -1696,6 +1722,9 @@
 
                 <!-- Step 4 -->
                 <div class="journey-step card-rose fade-up fade-up-d3">
+                    <span class="step-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#355C4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c0-4 3-6.5 7-6.5 0 4-3 6.5-7 6.5z"/><path d="M12 13c0-3.5-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z"/></svg>
+                    </span>
                     <span class="step-num">04</span>
                     <div class="step-content">
                         <h4>What's next</h4>
@@ -1787,7 +1816,17 @@
             </div>
 
             <div style="max-width:640px; margin:0 auto; background:var(--cream-light); border-radius:var(--radius-lg); padding:32px 36px; border:1px solid var(--line-soft); text-align:center;">
-                <div style="font-size:2.6rem; margin-bottom:4px; opacity:0.3; color:var(--gold);">🔗</div>
+                <svg viewBox="0 0 160 100" style="width:170px; height:auto; margin:0 auto 10px; display:block;" aria-hidden="true">
+                    <path d="M14 16 C 45 30, 60 45, 80 50" stroke="#C69214" stroke-width="1.8" fill="none" opacity="0.6"/>
+                    <path d="M146 16 C 115 30, 100 45, 80 50" stroke="#355C4A" stroke-width="1.8" fill="none" opacity="0.6"/>
+                    <path d="M14 84 C 45 70, 60 55, 80 50" stroke="#355C4A" stroke-width="1.8" fill="none" opacity="0.6"/>
+                    <path d="M146 84 C 115 70, 100 55, 80 50" stroke="#C69214" stroke-width="1.8" fill="none" opacity="0.6"/>
+                    <circle cx="14" cy="16" r="7" fill="#EAF1E9" stroke="#355C4A" stroke-width="1.8"/>
+                    <circle cx="146" cy="16" r="7" fill="#F4EBD7" stroke="#C69214" stroke-width="1.8"/>
+                    <circle cx="14" cy="84" r="7" fill="#F4EBD7" stroke="#C69214" stroke-width="1.8"/>
+                    <circle cx="146" cy="84" r="7" fill="#EAF1E9" stroke="#355C4A" stroke-width="1.8"/>
+                    <circle cx="80" cy="50" r="11" fill="#355C4A"/>
+                </svg>
                 <h3 style="color:var(--gold); font-size:1.6rem; font-family:var(--font-heading); font-weight:700; margin-bottom:2px;">KOODAL</h3>
                 <div style="font-size:0.9rem; color:var(--text-light); font-style:italic; font-family:var(--font-heading); margin-bottom:8px;">Where People Come Together.</div>
                 <p style="color:var(--text-light); font-size:0.95rem; line-height:1.8;">
@@ -2021,7 +2060,7 @@
                 <div class="tagline" style="margin-bottom:10px;">Where People Come Together.</div>
                 <div class="philosophy">
                     <strong>KOODAL STUDIO</strong> — Human-Centred Experiences.<br />
-                    <span style="opacity:0.4; font-size:0.75rem; display:block; margin-top:6px;">Parent Companion · Small Moments of Joy · Future</span>
+                    <span style="color:rgba(255,255,255,0.6); font-size:0.75rem; display:block; margin-top:6px;">Parent Companion · Small Moments of Joy · Future</span>
                 </div>
             </div>
 
