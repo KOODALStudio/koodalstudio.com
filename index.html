@@ -1014,26 +1014,40 @@
         .growing-box .future-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 10px;
             justify-content: center;
-            margin-top: 12px;
+            margin-top: 16px;
         }
 
-        .growing-box .future-pills span {
-            display: inline-block;
-            padding: 4px 16px;
+        .growing-box .future-pills > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
             border-radius: var(--radius-full);
-            background: var(--gold-pale);
-            border: 1px solid rgba(184, 134, 11, 0.08);
-            color: var(--text-soft);
-            font-size: 0.75rem;
-            font-weight: 500;
+            background: var(--cream-light);
+            border: 1.5px solid var(--line);
+            color: var(--text);
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        .growing-box .future-pills span .dot {
-            color: var(--gold);
-            opacity: 0.4;
-            margin-right: 4px;
+        .growing-box .future-pills > span:not(.more):hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .growing-box .future-pills > span .icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .growing-box .future-pills > span.more {
+            background: transparent;
+            border-color: transparent;
+            color: var(--text-soft);
+            font-weight: 500;
         }
 
         /* ================================================================
@@ -1792,10 +1806,10 @@
                     more noise to their lives.
                 </p>
                 <div class="future-pills">
-                    <span><span class="dot">·</span> Memory Keeper</span>
-                    <span><span class="dot">·</span> Elder Companion</span>
-                    <span><span class="dot">·</span> Family Journal</span>
-                    <span style="background:transparent; border-color:transparent; color:var(--text-soft);">+ more</span>
+                    <span class="card-blue"><span class="icon">🗂️</span> Memory Keeper</span>
+                    <span class="card-sage"><span class="icon">👵</span> Elder Companion</span>
+                    <span class="card-gold"><span class="icon">📖</span> Family Journal</span>
+                    <span class="more">+ more</span>
                 </div>
                 <p style="font-size:0.75rem; color:var(--text-soft); margin-top:10px;">
                     No dates. No hype. Just care.
