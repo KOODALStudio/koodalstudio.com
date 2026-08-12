@@ -16,6 +16,14 @@
     <meta property="og:url" content="https://koodalstudio.com" />
     <meta property="og:image" content="https://koodalstudio.com/image/1111.png" />
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KOODAL STUDIO — Where people come together." />
+    <meta name="twitter:description" content="Quiet, private digital companions for families. Start with Small Moments of Joy — free. Continue with Parent Companion — premium." />
+    <meta name="twitter:image" content="https://koodalstudio.com/image/1111.png" />
+
+    <link rel="canonical" href="https://koodalstudio.com/" />
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -33,9 +41,43 @@
         }
     </script>
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Parent Companion",
+            "description": "Offline digital reflection companion for parents of autistic children. Private by design, works offline, takes about two minutes a day.",
+            "brand": { "@type": "Brand", "name": "KOODAL STUDIO" },
+            "offers": {
+                "@type": "Offer",
+                "price": "19.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://koodalstudio.com/#products"
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Small Moments of Joy",
+            "description": "A free, 31-day printable reflection companion for families. No app, no login — just paper and a few quiet minutes to notice what's good.",
+            "brand": { "@type": "Brand", "name": "KOODAL STUDIO" },
+            "offers": {
+                "@type": "Offer",
+                "price": "0.00",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://koodalstudio.com/#products"
+            }
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@500;600;700&display=swap" rel="stylesheet" />
 
     <style>
         /* ================================================================
@@ -87,6 +129,7 @@
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -128,7 +171,7 @@
 
         .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
 
-        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+        a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, [tabindex]:focus-visible {
             outline: 2.5px solid var(--gold);
             outline-offset: 3px;
             border-radius: 6px;
@@ -174,6 +217,25 @@
             padding: 7px 18px;
             border-radius: var(--radius-full);
             border: 1px solid rgba(169, 122, 28, 0.16);
+        }
+
+        /* ================================================================
+           ICON SYSTEM
+           A single line-icon language (stroke = currentColor, 1em sizing)
+           replaces emoji throughout, so icons render identically across
+           every OS/browser and pick up each context's own text color.
+           ================================================================ */
+        .icon svg, .card-icon svg, .disclaimer-icon svg, .ownership-icon svg,
+        .card-badge svg, .card-features span svg, .step-icon svg, .card-meta svg {
+            width: 1em; height: 1em; display: inline-block; vertical-align: -0.1em;
+        }
+        .card-badge { display: inline-flex; align-items: center; gap: 5px; }
+        .icon-inline {
+            width: 1em; height: 1em; display: inline-block;
+            vertical-align: -0.14em; flex-shrink: 0;
+        }
+        .card-features span, .about-grid .text .values span {
+            display: inline-flex; align-items: center; gap: 5px;
         }
 
         /* ================================================================
@@ -240,6 +302,13 @@
         .nav-links a.active { color: var(--gold-deep); font-weight: 600; }
         .nav-links a.active::after { width: 100%; }
 
+        .nav-links .nav-cta {
+            background: var(--sage-dark); color: #FBF8F2; padding: 9px 20px; border-radius: var(--radius-full);
+            font-weight: 600; transition: all 0.3s var(--ease); margin-left: 6px;
+        }
+        .nav-links .nav-cta::after { display: none; }
+        .nav-links .nav-cta:hover { background: #345040; color: #FBF8F2; transform: translateY(-2px); box-shadow: var(--shadow-sage); }
+
         .hamburger {
             display: none; flex-direction: column; gap: 5px; cursor: pointer;
             padding: 6px; background: none; border: none;
@@ -265,6 +334,7 @@
                 transition: right 0.45s var(--ease); border-left: 1px solid var(--line-soft);
             }
             .nav-links.open { right: 0; }
+            .nav-links .nav-cta { align-self: flex-start; margin-left: 0; margin-top: 4px; }
         }
 
         /* ================================================================
@@ -363,11 +433,30 @@
             .hero-illustration-frame { max-width: 320px; margin: 0 auto; }
         }
 
+        .scroll-cue {
+            position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            color: var(--text-soft); text-decoration: none; opacity: 0.7; transition: opacity 0.3s var(--ease);
+        }
+        .scroll-cue:hover { opacity: 1; }
+        .scroll-cue span { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+        .scroll-cue svg { width: 14px; height: 14px; animation: scrollCue 2.4s ease-in-out infinite; }
+        @keyframes scrollCue { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
+        @media (prefers-reduced-motion: reduce) { .scroll-cue svg { animation: none; } }
+        @media (max-width: 820px) { .scroll-cue { display: none; } }
+
         /* ================================================================
            SECTION BASE
            ================================================================ */
-        .section { padding: 108px 0; position: relative; }
+        .section { padding: 116px 0; position: relative; }
         .section-alt { background: var(--cream-warm); }
+
+        /* Restrained per-topic background rhythm — a few deliberate tonal
+           shifts, not a different hue per section, so the page reads as
+           one calm place rather than a patchwork. */
+        .section-tint-sage { background: linear-gradient(180deg, #EEF4F0 0%, #F3F7F4 100%); }
+        .section-tint-blue { background: linear-gradient(180deg, #EFF5F8 0%, #F5F8FA 100%); }
+        .section-tint-rose { background: linear-gradient(180deg, #FAF2EF 0%, #FBF6F3 100%); }
 
         .section-header { text-align: center; max-width: 660px; margin: 0 auto 56px; }
         .section-header .badge { margin-bottom: 18px; }
@@ -376,65 +465,129 @@
         .section-header p { font-size: 1.08rem; color: var(--text-light); line-height: 1.75; }
 
         /* ================================================================
+           EVERYDAY GAP
+           ================================================================ */
+        .gap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 940px; margin: 0 auto; }
+        .gap-point { text-align: left; padding-top: 22px; border-top: 1.5px solid var(--line); transition: border-color 0.3s var(--ease); }
+        .gap-point:hover { border-top-color: var(--gold); }
+        .gap-num { display: block; font-family: var(--font-display); font-size: 1.9rem; font-weight: 500; color: var(--gold-deep); margin-bottom: 14px; }
+        .gap-point h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; margin-bottom: 10px; }
+        .gap-point p { color: var(--text-light); font-size: 0.98rem; line-height: 1.7; }
+        .gap-transition { max-width: 620px; margin: 64px auto 0; text-align: center; font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; }
+        .gap-transition strong { font-style: normal; color: var(--gold-deep); }
+        @media (max-width: 700px) {
+            .gap-grid { grid-template-columns: 1fr; gap: 32px; }
+            .gap-transition { font-size: 1.08rem; margin-top: 44px; }
+        }
+
+        /* ================================================================
            PRODUCTS
            ================================================================ */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 920px; margin: 0 auto; }
+        .product-story-list { max-width: 1080px; margin: 0 auto; }
 
-        .product-card {
-            background: var(--cream-light); border-radius: var(--radius-lg); padding: 40px 38px;
-            border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm);
-            transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
-            position: relative; display: flex; flex-direction: column;
+        .product-block { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+
+        .p-visual { display: flex; justify-content: center; }
+        .p-frame {
+            position: relative; width: 100%; max-width: 400px; aspect-ratio: 4 / 3.1;
+            border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+            display: flex; align-items: center; justify-content: center; padding: 28px;
         }
-        .product-card:hover { box-shadow: var(--shadow-lg); border-color: var(--gold-light); transform: translateY(-6px); }
+        .p-frame-sage { background: linear-gradient(175deg, #EFF6F1 0%, #E3F0E7 100%); border: 1px solid #D2E5D8; }
+        .p-frame-gold { background: linear-gradient(175deg, #FBF4E4 0%, #F5E9CF 100%); border: 1px solid #ECDCB4; }
 
-        .card-sage { background: linear-gradient(175deg, #EFF6F1 0%, #E8F2EA 100%) !important; border-color: #D2E5D8 !important; }
-        .card-gold { background: linear-gradient(175deg, #FBF4E4 0%, #F7EDD6 100%) !important; border-color: #ECDCB4 !important; }
-        .card-blue { background: linear-gradient(175deg, #ECF3F6 0%, #E5EFF3 100%) !important; border-color: #CFDFE6 !important; }
-        .card-rose { background: linear-gradient(175deg, #F9F0ED 0%, #F5E8E3 100%) !important; border-color: #E6D0C8 !important; }
-        .card-sky  { background: linear-gradient(175deg, #EEF3F8 0%, #E7EFF6 100%) !important; border-color: #D2DFEC !important; }
-        .card-sage:hover, .card-gold:hover, .card-blue:hover, .card-rose:hover, .card-sky:hover { border-color: var(--sage-dark) !important; }
-
-        .product-card .card-badge {
-            display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.09em; padding: 5px 15px; border-radius: var(--radius-full);
-            margin-bottom: 16px; align-self: flex-start;
+        .p-frame-badge {
+            position: absolute; top: 22px; left: 22px; display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
+            padding: 6px 14px; border-radius: var(--radius-full);
         }
-        .product-card .card-badge.premium { background: var(--gold-deep); color: var(--cream-light); }
-        .product-card .card-badge.free { background: var(--sage-light); color: var(--sage-dark); }
+        .p-frame-badge svg { width: 12px; height: 12px; }
+        .p-frame-badge.premium { background: var(--gold-deep); color: var(--cream-light); }
+        .p-frame-badge.free { background: var(--sage-dark); color: var(--cream-light); }
 
-        .product-card .card-icon { font-size: 2.1rem; margin-bottom: 12px; }
-        .product-card h3 { font-size: 1.4rem; color: var(--text); margin-bottom: 3px; }
-        .product-card .card-sub { font-size: 0.86rem; color: var(--text-light); font-weight: 500; margin-bottom: 14px; }
-        .product-card .card-desc { font-size: 0.96rem; color: var(--text-light); line-height: 1.75; margin-bottom: 20px; flex: 1; }
-
-        .product-card .card-features { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
-        .product-card .card-features span {
-            font-size: 0.72rem; background: rgba(255,255,255,0.6); padding: 5px 15px;
-            border-radius: var(--radius-full); color: var(--sage-dark); font-weight: 600;
-            border: 1px solid rgba(63,95,78,0.12);
+        .p-frame-inner {
+            width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; border: 1.5px dashed rgba(43,44,38,0.16); border-radius: var(--radius-lg);
+            color: var(--text-soft); background: rgba(255,255,255,0.4);
         }
+        .p-frame-inner svg { width: 34px; height: 34px; }
+        .p-frame-inner span { font-size: 0.76rem; font-weight: 600; text-align: center; padding: 0 20px; }
+        .p-frame-inner.has-image { border: none; background: none; padding: 0; overflow: hidden; }
+        .p-frame-inner.has-image img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: var(--radius-lg); display: block; }
 
-        .product-card .card-price {
-            font-size: 1.3rem; font-weight: 700; color: var(--gold-deep); font-family: var(--font-display);
-            margin-bottom: 22px;
+        .p-badge {
+            display: inline-flex; align-items: center; gap: 6px; font-size: 0.62rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.09em; padding: 5px 15px; border-radius: var(--radius-full);
+            margin-bottom: 16px;
         }
-        .product-card .card-price small { font-size: 0.72rem; font-weight: 400; color: var(--text-light); font-family: var(--font-body); }
+        .p-badge svg { width: 11px; height: 11px; }
+        .p-badge.premium { background: var(--gold-deep); color: var(--cream-light); }
+        .p-badge.free { background: var(--sage-light); color: var(--sage-dark); }
 
-        .product-card .card-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
-        .product-card .card-actions .btn-sm {
-            padding: 13px 28px; font-size: 0.86rem; border-radius: var(--radius-full); font-weight: 700;
+        .p-content .p-eyebrow {
+            display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--gold-deep); margin-bottom: 14px;
+        }
+        .p-content h3 { font-size: 2rem; margin-bottom: 4px; }
+        .p-content .p-subtitle { font-size: 0.94rem; color: var(--text-light); font-weight: 500; margin-bottom: 16px; }
+        .p-content .p-desc { font-size: 1.04rem; color: var(--text-light); line-height: 1.8; margin-bottom: 32px; max-width: 460px; }
+
+        .p-features { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px; margin-bottom: 34px; }
+        .p-feature { display: flex; align-items: flex-start; gap: 12px; }
+        .p-feature-icon {
+            flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+        .p-feature-icon svg { width: 17px; height: 17px; }
+        .p-feature-icon.sage { background: rgba(63,95,78,0.13); color: var(--sage-dark); }
+        .p-feature-icon.gold { background: rgba(169,122,28,0.15); color: var(--gold-deep); }
+        .p-feature h4 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .p-feature p { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; margin: 0; }
+
+        .p-price-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
+        .p-price { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; }
+        .p-price small { font-size: 0.7rem; font-weight: 400; color: var(--text-light); font-family: var(--font-body); }
+        .p-price.gold { color: var(--gold-deep); }
+        .p-price.sage { color: var(--sage-dark); }
+
+        .p-cta {
+            padding: 15px 32px; font-size: 0.88rem; border-radius: var(--radius-full); font-weight: 700;
             border: none; cursor: pointer; font-family: var(--font-body);
             transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
         }
-        .product-card .card-actions .btn-sm.primary { background: linear-gradient(155deg, var(--gold-deep) 0%, #74500F 100%); color: var(--cream-light); box-shadow: var(--shadow-gold); }
-        .product-card .card-actions .btn-sm.primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(169,122,28,0.32); }
-        .product-card .card-actions .btn-sm.secondary { background: var(--sage-dark); color: var(--cream-light); border: none; box-shadow: var(--shadow-sage); }
-        .product-card .card-actions .btn-sm.secondary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(63,95,78,0.34); }
+        .p-cta.primary { background: linear-gradient(155deg, var(--gold-deep) 0%, #74500F 100%); color: var(--cream-light); box-shadow: var(--shadow-gold); }
+        .p-cta.primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(169,122,28,0.32); }
+        .p-cta.secondary { background: var(--sage-dark); color: var(--cream-light); box-shadow: var(--shadow-sage); }
+        .p-cta.secondary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(63,95,78,0.34); }
 
-        .product-card .card-footer { font-size: 0.64rem; color: var(--text-soft); letter-spacing: 0.05em; margin-top: 16px; font-weight: 500; }
+        .p-footnote { font-size: 0.64rem; color: var(--text-soft); letter-spacing: 0.05em; font-weight: 500; }
 
-        @media (max-width: 700px) { .product-grid { grid-template-columns: 1fr; max-width: 420px; } }
+        .product-relation {
+            display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
+            max-width: 460px; margin: 56px auto; color: var(--text-light); font-size: 0.94rem; line-height: 1.6;
+        }
+        .product-relation svg { width: 20px; height: 20px; color: var(--gold-light); opacity: 0.8; }
+        .product-relation strong { color: var(--text); }
+
+        .product-compare { max-width: 720px; margin: 72px auto 0; }
+        .product-compare table { width: 100%; border-collapse: collapse; }
+        .product-compare caption { caption-side: top; text-align: center; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 18px; }
+        .product-compare th, .product-compare td { padding: 14px 16px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--line-soft); color: var(--text-light); }
+        .product-compare thead th { font-family: var(--font-display); font-weight: 500; color: var(--text); font-size: 1rem; }
+        .product-compare tbody th { color: var(--text-soft); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; white-space: nowrap; }
+        .product-compare tbody tr:last-child th, .product-compare tbody tr:last-child td { border-bottom: none; }
+
+        @media (max-width: 780px) {
+            .product-block { grid-template-columns: 1fr; gap: 32px; }
+            .product-block .p-visual { order: -1; }
+            .p-content .p-desc { max-width: none; }
+            .p-features { grid-template-columns: 1fr; }
+            .product-relation { margin: 40px auto; }
+        }
+        @media (max-width: 480px) {
+            .p-content h3 { font-size: 1.6rem; }
+            .product-compare th, .product-compare td { padding: 10px 8px; font-size: 0.78rem; }
+            .p-price-row { gap: 16px; }
+        }
 
         /* ================================================================
            JOURNEY
@@ -448,7 +601,11 @@
         }
         .journey-step:hover { border-color: var(--gold-light); box-shadow: var(--shadow-md); transform: translateY(-3px); }
 
-        .journey-step .step-num { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--gold-deep); opacity: 0.35; min-width: 30px; }
+        .journey-step .step-num {
+            font-family: var(--font-body); font-size: 0.92rem; font-weight: 700; color: var(--cream-light);
+            background: var(--gold-deep); min-width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
         .journey-step .step-icon {
             flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.75);
             display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(43,44,38,0.08);
@@ -461,24 +618,93 @@
         .journey-arrow { font-size: 1.4rem; color: var(--gold-light); opacity: 0.6; padding: 6px 0; line-height: 1; }
         .journey-arrow svg { display: block; width: 22px; height: 22px; }
 
-        @media (max-width: 480px) { .journey-step { padding: 16px 20px; gap: 14px; } .journey-step .step-num { font-size: 1.05rem; min-width: 22px; } }
+        @media (max-width: 480px) { .journey-step { padding: 16px 20px; gap: 14px; } .journey-step .step-num { font-size: 0.82rem; min-width: 26px; height: 26px; } }
 
         /* ================================================================
-           PROMISE
+           TRUST (formerly PROMISE)
+           Editorial layout: large statement on the left, principles
+           listed as quiet rows on the right — a brand principle,
+           not four small feature cards.
            ================================================================ */
-        .promise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 920px; margin: 0 auto; }
+        .trust-editorial { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: start; }
+        .trust-statement h2 { margin: 14px 0 16px; }
+        .trust-statement p { font-size: 1.02rem; color: var(--text-light); line-height: 1.8; max-width: 380px; }
 
-        .promise-item {
-            text-align: center; padding: 32px 20px; background: var(--cream-light); border-radius: var(--radius-md);
-            border: 1px solid var(--line-soft); transition: all 0.4s var(--ease); box-shadow: var(--shadow-xs);
+        .trust-principles { display: flex; flex-direction: column; }
+        .trust-principle {
+            display: flex; align-items: flex-start; gap: 22px; padding: 28px 0;
+            border-top: 1px solid var(--line-soft);
         }
-        .promise-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--gold-light); }
-        .promise-item .icon { font-size: 2.1rem; display: block; margin-bottom: 12px; }
-        .promise-item h4 { font-size: 0.96rem; font-family: var(--font-body); font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .promise-item p { font-size: 0.85rem; color: var(--text-light); margin: 0; line-height: 1.6; }
+        .trust-principle:first-child { border-top: none; padding-top: 0; }
+        .trust-principle .icon {
+            flex-shrink: 0; font-size: 1.4rem; display: flex; align-items: center; justify-content: center;
+            width: 52px; height: 52px; border-radius: 50%; background: rgba(43,44,38,0.05);
+        }
+        .trust-principle.card-blue .icon { background: rgba(74,144,217,0.13); color: #2E6CA8; }
+        .trust-principle.card-sage .icon { background: rgba(63,95,78,0.13); color: var(--sage-dark); }
+        .trust-principle.card-rose .icon { background: rgba(194,104,90,0.13); color: #A8503F; }
+        .trust-principle.card-gold .icon { background: rgba(169,122,28,0.15); color: var(--gold-deep); }
+        .trust-principle h4 { font-size: 1.05rem; margin-bottom: 5px; }
+        .trust-principle p { font-size: 0.92rem; color: var(--text-light); line-height: 1.7; margin: 0; max-width: 440px; }
 
-        @media (max-width: 700px) { .promise-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
-        @media (max-width: 420px) { .promise-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; } }
+        @media (max-width: 860px) {
+            .trust-editorial { grid-template-columns: 1fr; gap: 32px; }
+            .trust-statement p { max-width: none; }
+        }
+        @media (max-width: 480px) {
+            .trust-principle { gap: 16px; padding: 22px 0; }
+            .trust-principle .icon { width: 44px; height: 44px; font-size: 1.2rem; }
+        }
+
+        /* ================================================================
+           RESOURCES
+           A real, available-now resource is given weight; the
+           forward-looking categories stay visually quiet and are
+           labelled "coming soon" so nothing implies availability
+           that doesn't exist yet.
+           ================================================================ */
+        .resource-now {
+            display: flex; align-items: center; gap: 26px; max-width: 760px; margin: 0 auto;
+            padding: 36px 40px; background: var(--cream-light); border-radius: var(--radius-xl);
+            border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm);
+        }
+        .resource-now .icon {
+            flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 1.6rem;
+            background: var(--sage-light); color: var(--sage-dark);
+        }
+        .resource-now-label {
+            display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--sage-dark); background: var(--sage-light);
+            padding: 4px 12px; border-radius: var(--radius-full); margin-bottom: 8px;
+        }
+        .resource-now h3 { font-size: 1.25rem; margin-bottom: 4px; }
+        .resource-now p { font-size: 0.92rem; color: var(--text-light); line-height: 1.65; margin-bottom: 10px; }
+        .resource-now a { font-size: 0.86rem; font-weight: 700; color: var(--gold-deep); }
+        .resource-now a:hover { text-decoration: underline; }
+
+        .resource-future { max-width: 920px; margin: 56px auto 0; }
+        .resource-future-label {
+            text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-soft); margin-bottom: 24px;
+        }
+        .resource-future-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 28px; }
+        .resource-future-item { display: flex; align-items: flex-start; gap: 12px; padding: 6px 0; }
+        .resource-future-item .icon {
+            flex-shrink: 0; width: 30px; height: 30px; display: flex; align-items: center;
+            justify-content: center; color: var(--text-soft); font-size: 1.1rem;
+        }
+        .resource-future-item h4 { font-size: 0.86rem; color: var(--text-light); font-weight: 700; margin-bottom: 2px; }
+        .resource-future-item p { font-size: 0.78rem; color: var(--text-soft); line-height: 1.5; margin: 0; }
+
+        @media (max-width: 860px) {
+            .resource-now { flex-direction: column; text-align: center; padding: 30px 26px; }
+            .resource-future-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+        }
+        @media (max-width: 480px) {
+            .resource-future-grid { grid-template-columns: 1fr; }
+            .resource-future-item { text-align: left; }
+        }
 
         /* ================================================================
            GROWING TOGETHER
@@ -502,6 +728,35 @@
         .growing-box .future-pills > span:not(.more):hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); border-color: var(--gold-light); }
         .growing-box .future-pills > span .icon { font-size: 1.05rem; line-height: 1; margin: 0; }
         .growing-box .future-pills > span.more { background: transparent; border-color: transparent; color: var(--text-soft); font-weight: 500; }
+
+        /* ================================================================
+           RESEARCH
+           A quieter, editorial treatment distinct from Trust and
+           Resources — no cards, no fake citations, just the existing
+           "coming soon" promise presented with more air.
+           ================================================================ */
+        .research-editorial {
+            display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center;
+            max-width: 980px; margin: 0 auto;
+        }
+        .research-lead .icon {
+            display: inline-flex; width: 52px; height: 52px; border-radius: 50%; align-items: center;
+            justify-content: center; background: rgba(74,144,217,0.13); color: #2E6CA8; margin-bottom: 14px; font-size: 1.3rem;
+        }
+        .research-lead h3 { font-size: 1.8rem; margin-bottom: 8px; }
+        .research-lead .sub { font-size: 0.94rem; color: var(--text-light); font-style: italic; font-family: var(--font-display); }
+        .research-body p { color: var(--text-light); font-size: 0.98rem; line-height: 1.85; }
+        .research-body .future-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        .research-body .future-pills > span {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: var(--radius-full);
+            background: var(--cream-light); border: 1.5px solid var(--line); color: var(--text); font-size: 0.82rem; font-weight: 600;
+        }
+        .research-body .future-pills > span .icon { font-size: 1rem; line-height: 1; }
+        .research-note { font-size: 0.78rem; color: var(--text-soft); margin-top: 18px; }
+
+        @media (max-width: 780px) {
+            .research-editorial { grid-template-columns: 1fr; gap: 26px; }
+        }
 
         /* ================================================================
            ABOUT
@@ -539,6 +794,15 @@
         .philosophy-visual-frame img { display: block; width: 100%; height: auto; }
         @media (prefers-reduced-motion: reduce) { .philosophy-visual-frame { animation: none; } }
 
+        .philosophy-word {
+            font-family: 'Noto Sans Tamil', var(--font-display), serif;
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            font-weight: 600;
+            color: var(--gold-deep);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 900px) {
             .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
             .philosophy-visual-frame { max-width: 340px; }
@@ -551,6 +815,7 @@
             .about-grid .text .quote-block { border-left: none; border-top: 3px solid var(--gold); border-radius: var(--radius-md); padding: 20px; }
             .about-grid .text .values { justify-content: center; }
         }
+
 
         /* ================================================================
            STORIES
@@ -565,6 +830,12 @@
         .story-card .story-text { font-family: var(--font-display); font-size: 1.04rem; color: var(--text-light); font-style: italic; line-height: 1.65; margin-bottom: 14px; }
         .story-card .story-author { font-size: 0.8rem; color: var(--text-soft); font-weight: 600; }
         .story-card .story-author .tag { background: var(--gold-pale); padding: 2px 11px; border-radius: var(--radius-full); font-size: 0.62rem; color: var(--gold-deep); margin-left: 6px; }
+        .story-card .story-tag {
+            display: inline-flex; align-items: center; gap: 5px; background: var(--gold-pale);
+            padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.64rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold-deep);
+        }
+        .story-card .story-tag svg { width: 1em; height: 1em; }
 
         @media (max-width: 700px) { .stories-grid { grid-template-columns: 1fr; max-width: 420px; } }
 
@@ -608,8 +879,40 @@
         @media (max-width: 480px) { .contact-row { grid-template-columns: 1fr; max-width: 300px; } }
 
         /* ================================================================
+           FAQ
+           ================================================================ */
+        .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        .faq-item {
+            background: var(--cream-light); border: 1px solid var(--line-soft); border-radius: var(--radius-md);
+            padding: 4px 26px; box-shadow: var(--shadow-xs); transition: border-color 0.25s var(--ease);
+        }
+        .faq-item:hover { border-color: var(--gold-light); }
+        .faq-item summary {
+            list-style: none; cursor: pointer; padding: 20px 0; font-family: var(--font-display);
+            font-size: 1.04rem; color: var(--text); display: flex; align-items: center;
+            justify-content: space-between; gap: 16px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary .faq-plus { flex-shrink: 0; color: var(--gold-deep); transition: transform 0.25s var(--ease); }
+        .faq-item summary .faq-plus svg { width: 1.1em; height: 1.1em; display: block; }
+        .faq-item[open] summary .faq-plus { transform: rotate(45deg); }
+        .faq-item p { font-size: 0.92rem; color: var(--text-light); line-height: 1.8; padding: 0 0 22px; margin: 0; }
+
+        /* ================================================================
            FOOTER
            ================================================================ */
+        /* ================================================================
+           CLOSING CTA BAND
+           ================================================================ */
+        .closing-cta {
+            background: linear-gradient(155deg, #2C4536 0%, #23392E 100%); color: var(--cream);
+            padding: 76px 0; text-align: center;
+        }
+        .closing-cta h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; color: var(--cream-light); margin-bottom: 14px; }
+        .closing-cta p { font-size: 1rem; color: rgba(251,248,242,0.72); max-width: 480px; margin: 0 auto 30px; line-height: 1.7; }
+        .closing-cta .btn-primary { background: linear-gradient(155deg, var(--gold-deep) 0%, #6E4E10 100%); box-shadow: 0 14px 34px rgba(0,0,0,0.28); }
+        .closing-cta .btn-primary:hover { box-shadow: 0 20px 46px rgba(0,0,0,0.34); }
+
         footer { background: #23392E; color: var(--cream); padding: 56px 0 28px; margin-top: 4px; }
         footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; align-items: start; }
 
@@ -675,11 +978,11 @@
 
             <div class="nav-links" id="navLinks" role="menubar">
                 <a href="#philosophy" role="menuitem">Mission</a>
-                <a href="#products" role="menuitem">Solutions</a>
+                <a href="#products" role="menuitem">Tools</a>
                 <a href="#resources" role="menuitem">Resources</a>
                 <a href="#research" role="menuitem">Research</a>
                 <a href="#about" role="menuitem">About</a>
-                <a href="#contact" role="menuitem">Contact</a>
+                <a href="#contact" role="menuitem" class="nav-cta">Contact</a>
             </div>
         </div>
     </nav>
@@ -694,7 +997,7 @@
             <div class="hero-grid">
                 <div class="hero-content">
                     <div class="studio-label">KOODAL STUDIO</div>
-                    <div class="koodal-word">Where people<br /><em>come together.</em></div>
+                    <h1 class="koodal-word">Where people<br /><em>come together.</em></h1>
                     <div class="mission-line">
                         Simple, private tools <span class="gold">made for families</span><br class="hidden-mobile" />
                         who just want to hold onto the good moments.
@@ -715,12 +1018,128 @@
 
                 <div class="hero-illustration reveal">
                     <div class="hero-illustration-frame">
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCALgAxUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3H9nT/kjWg/8Abx/6US16FXnv7OnPwa0H/t4/9KJa9CrysN/Bh6L8j6LiH/kb4r/r5P8A9KYhFIRzTjQK2PHGbaaVqXFBFFgItox0FBTjpUu2jB9KLBch2DHQUbB6CpsUoXFFgIdnsPyo2D0FS44oxRYCLYPQflSbPapsUm2iwXItnsPypdg9BUoFKRRYZBsHoPypdg9B+VS4oxzRYVyHYPQUuwelS49qMGiwXItnsKNg9BUuKXFFgItg9B+VGz2H5VLijFAEW0ego2ewqXFGKLARbB6CgIPQflUwWgLTsBFs9h+VGweg/KpdtGPxosBFsHoKNg9KmAo20WAi2ew/Kk2D0H5VNijb60AQ7B/kUbB6CpsUYoAh2D0H5UbB6D8qmxRiiwEWwZ/+tSGP2H5VPigr7UWAg2D0FLsB7D8qm20bc0WAi2ewo2j0FTbeKQrxRYCEqPQUhX2FTFRSY9aLAR7B2A/KjYPQflUuBRj2osBFsHp+lGwdgPyqbHtQVosBDsHoPypNnsPyqcqKTFFgIggz0H5UeWOeBU2PSjFFhEOwego2D0FTYzRjNFhkOwen6UbB6D8qm20YHpRYRCUHoPyo2DGcCpsD0oxRYZEEHoPyo2D0H5VNj2o20WEQ7BjoPyo2D0FS49qXFOwEOweg/KjYPQflU22jbRYCHYPQflR5Y9B+VTEUmDRYCLYPQUbB6D8qmxRilYCDZ7D8qXYPQflU22jbRYLkWweg/KjYPQflUwWjbzTsFyHywT0H5UbB6D8qmIFGKLAQlB6D8qNg9BU2KNvtRYLkJQego2D0FTY9qNtFguQ7B6Cl2D0H5VKFoIosFyHYPQflS7B6D8qlA9aXFFguQFB6D8qNg9B+VT4pNvNFguRbB6D8qCg7AflU22jbTsFyDYPQflS7B6D8qmI9qMUWFchCD0H5UuwZ6D8qlC80u2iwXItg9BSeX7D8qm20Y60WAhKD0H5UbB6CpcUY4osBFsHoKKm20UWC55r+zn/AMka0L/t4/8ASiWvQq89/ZzGfg1oPP8Az8f+lEtehe1c2G/gw9F+R7XEP/I3xX/Xyf8A6Uw5xRRRW544tFJmloAWkoooAKKKWgBKKKKADvS0lFAC0lKKKACijvmlFACUUtGKAAUD6Ud6KAFpDS0UwExxSU7FAHFIBKKWigA7UCijtQAUGiigQClFJRTAX6UCjvQaACjvRRQAUUUGgANFBooAKKKM0ALRRRQAh6UUGjNABRRRxQAvaikpaACgdKKKAEooooAKKKKAClxRRQAYopaTNAgoooNAAKWkFLQAUlL2pKACiiigA6UcUtHFAxBzThSClpiAUUUdqACiijnFMAooooAKOtHvRQAdDRS0lABQcZoHWloAKSlooAKKBRQAUUUUAFKaSigBaSiigAopaQ0AFFFFAHmv7OX/ACRrQf8At4/9KJa9CArz79nL/kjOhf8Abx/6US16FXLhv4MPRfke1xF/yN8V/wBfJ/8ApTEpKWjFbnjiYpcUtJQAdKTilo6UAFFFFABRz2pfwo/CgApKXBo6UAKKKBRQAUCilBoAMUYo5paYCYoxRS9qAEoxSntRQISilooGJRzRRSADRS0lABRjmlFLTENxS0fWloAQUdqWkoAKKWgUAJSmiigApMUoooAMcUhFLS0ANoNLRQAnajFLSmgBtGKdQaAEoxS0UCExRjFLRigBKMUuKO9AxMUUpooATtRSgUUCCkpaKYBQKKWgBMUYoo7UAFGKPwooAKO9FFABQBS454oPWgBMUooooAKO1FHFMAoooPTNIApTSUtACYoxS0h60wAe1FAo4oAKBmgc0tAAKKBRQAUUUd6BBRRRQAYooooGFFFHagAopaKAEopaKAPNP2cv+SNaD/28f+lEtehV57+zn/yRrQf+3j/0olr0KuXDfwYei/I9riL/kb4r/r5P/wBKYUtJS1ueOFFApSKQ0YoAKKUdKQ0AGaWig0DFooooEHNAoooAKKKKACiiigA/CigUUAFFLSUAJRRQaAAcUUUUgClFJRRQAtFLRQIQ0lLijFACUUuKKAEpaKKACiiigAoo7UUAFA5paKAEpaKKAA0UUvegBKKKKAA0UUUAFFFHegBKKKKACiiigAooooAKKKKACiiigA9KKKKAEpaKKACiiigAooooA//9k=" alt="A parent and child reading together, a quiet moment of connection" loading="lazy" />
+                        <img src="image/desktop.png" alt="A parent and child reading together, a quiet moment of connection" loading="lazy" />
                     </div>
                 </div>
             </div>
         </div>
+        <a href="#everyday" class="scroll-cue" aria-label="Scroll to learn more">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </a>
     </header>
+
+    <!-- ================================================================
+    THE EVERYDAY GAP
+    ================================================================ -->
+    <section class="section section-alt" id="everyday">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="badge">Everyday Life</span>
+                <h2>The moments <span class="gold">in between</span></h2>
+                <p>Most of family life happens in the small, everyday moments — not in appointments or formal settings. We're a small studio built around that idea: simple, private tools that help you notice and keep the moments that matter, one day at a time.</p>
+            </div>
+
+            <div class="gap-grid">
+                <div class="gap-point reveal">
+                    <span class="gap-num">01</span>
+                    <h3>Notice</h3>
+                    <p>Small, everyday moments worth noticing — even when nobody else does.</p>
+                </div>
+                <div class="gap-point reveal reveal-d1">
+                    <span class="gap-num">02</span>
+                    <h3>Reflect</h3>
+                    <p>Quiet spaces to notice and write down what matters, a few minutes at a time.</p>
+                </div>
+                <div class="gap-point reveal reveal-d2">
+                    <span class="gap-num">03</span>
+                    <h3>Connect</h3>
+                    <p>Tools that help families stay connected, no matter the kind of day it's been.</p>
+                </div>
+            </div>
+
+            <p class="gap-transition reveal">This is why <strong>KOODAL</strong> exists — human-centred tools, built around the moments families already notice.</p>
+        </div>
+    </section>
+
+    <!-- ================================================================
+    ABOUT
+    ================================================================ -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="text reveal">
+                    <span class="badge" style="display:inline-block; margin-bottom:8px;">About</span>
+                    <h2>Human-Centred <span class="gold">Experiences</span></h2>
+                    <p class="lead">
+                        <strong>KOODAL STUDIO</strong> was created to fill a gap — a gap between
+                        the clinical world and the emotional world of families.
+                    </p>
+                    <p class="lead">
+                        We don't collect your data. We don't analyse your child.
+                        We don't tell you how to parent. We simply help you notice
+                        the moments that matter.
+                    </p>
+                    <div class="quote-block">
+                        "We don't collect your data. We don't analyse your child.
+                        We don't tell you how to parent. We simply help you notice
+                        the moments that matter."
+                    </div>
+                    <p style="font-size:0.87rem; color:var(--text-soft); margin-top:10px;">
+                        <strong style="color:var(--gold-deep);">KOODAL STUDIO</strong> —
+                        Creating Human-Centred Experiences.
+                    </p>
+                    <div class="values">
+                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> Privacy</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg> Compassion</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-7 16-16 16z"/><path d="M4 20L13 11"/></svg> Calm</span>
+                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg> Trust</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h9a2.5 2.5 0 100-5"/><path d="M4 14h13a2.5 2.5 0 110 5"/><path d="M4 19h6"/></svg> Reflection</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 15l6-6"/><path d="M8 12l-2 2a3.5 3.5 0 004.9 4.9l2-2"/><path d="M16 12l2-2a3.5 3.5 0 00-4.9-4.9l-2 2"/></svg> Connection</span>
+                    </div>
+                </div>
+                <div class="visual reveal reveal-d1">
+                    <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="aboutBgK" cx="50%" cy="45%" r="65%">
+                                <stop offset="0%" stop-color="#E7F0E9" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#FBF8F2" stop-opacity="1"/>
+                            </radialGradient>
+                            <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#2B2C26" flood-opacity="0.12"/>
+                            </filter>
+                        </defs>
+                        <rect width="340" height="300" fill="url(#aboutBgK)" rx="24"/>
+                        <line x1="170" y1="150" x2="170" y2="80" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="250" y2="122" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="250" y2="202" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="170" y2="238" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="90" y2="202" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <line x1="170" y1="150" x2="90" y2="122" stroke="#CBD9CD" stroke-width="1.75"/>
+                        <circle cx="170" cy="150" r="36" fill="#3F5F4E" filter="url(#nodeShadow)"/>
+                        <text x="170" y="146" font-family="'Fraunces', serif" font-size="12.5" fill="#FBF8F2" text-anchor="middle" font-weight="700" letter-spacing="0.02em">KOODAL</text>
+                        <text x="170" y="160" font-family="'Inter', sans-serif" font-size="6" fill="#E7F0E9" text-anchor="middle" letter-spacing="1.5">OUR VALUES</text>
+                        <circle cx="170" cy="60" r="30" fill="#ECF3F6" stroke="#CFDFE6" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(160,50) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></g>
+                        <text x="170" y="98" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Privacy</text>
+                        <circle cx="256" cy="112" r="30" fill="#F9F0ED" stroke="#E6D0C8" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(246,102) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></g>
+                        <text x="256" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Compassion</text>
+                        <circle cx="256" cy="205" r="30" fill="#FBF4E4" stroke="#ECDCB4" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(246,195) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></g>
+                        <text x="256" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Trust</text>
+                        <circle cx="170" cy="248" r="30" fill="#EFF6F1" stroke="#D2E5D8" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(160,238) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 11 10 4 20 4c0 10-7 16-16 16z"/><path d="M4 20L13 11"/></g>
+                        <text x="170" y="286" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Calm</text>
+                        <circle cx="84" cy="205" r="30" fill="#EEF3F8" stroke="#D2DFEC" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(74,195) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h9a2.5 2.5 0 100-5"/><path d="M4 14h13a2.5 2.5 0 110 5"/><path d="M4 19h6"/></g>
+                        <text x="84" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Reflection</text>
+                        <circle cx="84" cy="112" r="30" fill="#F1F8EC" stroke="#DCEBCE" stroke-width="2" filter="url(#nodeShadow)"/>
+                        <g transform="translate(74,102) scale(0.8)" fill="none" stroke="#3F5F4E" stroke-width="2.2" stroke-linecap="round"><path d="M9 15l6-6"/><path d="M8 12l-2 2a3.5 3.5 0 004.9 4.9l2-2"/><path d="M16 12l2-2a3.5 3.5 0 00-4.9-4.9l-2 2"/></g>
+                        <text x="84" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Connection</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Founder bio intentionally omitted until a real name, photo, and background are ready — do not fabricate one. -->
+        </div>
+    </section>
 
     <!-- ================================================================
     PRODUCTS
@@ -728,59 +1147,123 @@
     <section class="section section-alt" id="products">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">✦ Our Products</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg> Our Products</span>
                 <h2>Quiet companions for <span class="gold">families</span></h2>
                 <p>Two ways to begin — one free, one paid. Both made with the same care.</p>
             </div>
 
-            <div class="product-grid">
-                <div class="product-card card-gold reveal">
-                    <span class="card-badge premium">⭐ Premium</span>
-                    <span class="card-icon">🌿</span>
-                    <h3>Parent Companion</h3>
-                    <p class="card-sub">Offline Digital Reflection Companion</p>
-                    <p class="card-desc">
-                        An offline app for parents of autistic children. It stays on your
-                        device, takes about two minutes a day, and helps you hold onto the
-                        small moments that give you hope.
-                    </p>
-                    <div class="card-features">
-                        <span>🔒 Private</span>
-                        <span>📱 Offline</span>
-                        <span>⏱️ 2 Minutes</span>
-                        <span>💛 Human-centred</span>
+            <div class="product-story-list">
+
+                <div class="product-block">
+                    <div class="p-visual reveal">
+                        <div class="p-frame p-frame-sage">
+                            <span class="p-frame-badge free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 9h16M12 9v11"/><path d="M8 9c-2 0-3-1.5-3-3s1-2 2-2c1.5 0 3 2 3 5M16 9c2 0 3-1.5 3-3s-1-2-2-2c-1.5 0-3 2-3 5"/></svg> Free Resource</span>
+                            <!-- TODO: replace with a real Small Moments of Joy printable preview before launch -->
+                            <div class="p-frame-inner">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg>
+                                <span>Printable preview coming soon</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-price">$19 <small>one-time</small></div>
-                    <div class="card-actions">
-                        <button class="btn-sm primary" onclick="window.location.href='#contact'">Learn More →</button>
+                    <div class="p-content reveal reveal-d1">
+                        <span class="p-badge free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 9h16M12 9v11"/><path d="M8 9c-2 0-3-1.5-3-3s1-2 2-2c1.5 0 3 2 3 5M16 9c2 0 3-1.5 3-3s-1-2-2-2c-1.5 0-3 2-3 5"/></svg> Free Resource</span>
+                        <span class="p-eyebrow" style="color:var(--sage-dark);">Free &bull; Printable &bull; 31 Days</span>
+                        <h3>Small Moments of Joy</h3>
+                        <p class="p-subtitle">31‑Day Printable Reflection Companion</p>
+                        <p class="p-desc">A free, printable companion for 31 days. No app, no login — just paper and a few quiet minutes to notice what's good.</p>
+
+                        <div class="p-features">
+                            <div class="p-feature">
+                                <span class="p-feature-icon sage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V4h12v5"/><rect x="4" y="9" width="16" height="8" rx="1.5"/><path d="M6 17h12v4H6z"/></svg></span>
+                                <div><h4>Printable</h4><p>No app, no login — just paper.</p></div>
+                            </div>
+                            <div class="p-feature">
+                                <span class="p-feature-icon sage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span>
+                                <div><h4>31 Days</h4><p>A page to fill in for each of the 31 days.</p></div>
+                            </div>
+                            <div class="p-feature">
+                                <span class="p-feature-icon sage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+                                <div><h4>Family</h4><p>Made with real families in mind.</p></div>
+                            </div>
+                        </div>
+
+                        <div class="p-price-row">
+                            <div class="p-price sage">Free Download</div>
+                            <!-- TODO: wire up real PDF download link for Small Moments of Joy — currently routes to Contact as a placeholder -->
+                            <button class="p-cta secondary" onclick="window.location.href='#contact'">Download PDF →</button>
+                        </div>
+                        <div class="p-footnote">— A KOODAL product —</div>
                     </div>
-                    <div class="card-footer">— A KOODAL product —</div>
                 </div>
 
-                <div class="product-card card-sage reveal reveal-d1">
-                    <span class="card-badge free">🎁 Free</span>
-                    <span class="card-icon">📖</span>
-                    <h3>Small Moments of Joy</h3>
-                    <p class="card-sub">31‑Day Printable Reflection Companion</p>
-                    <p class="card-desc">
-                        A free, printable companion for 31 days. No app, no login —
-                        just paper and a few quiet minutes to notice what's good.
-                    </p>
-                    <div class="card-features">
-                        <span>🖨️ Printable</span>
-                        <span>📓 31 Days</span>
-                        <span>💛 Family</span>
-                    </div>
-                    <div class="card-price" style="color:var(--sage-dark);">Free Download</div>
-                    <div class="card-actions">
-                        <button class="btn-sm secondary" onclick="window.location.href='#contact'">Download PDF →</button>
-                    </div>
-                    <div class="card-footer">— A KOODAL product —</div>
+                <div class="product-relation reveal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                    <p>Many families start with <strong>Small Moments of Joy</strong> — and try <strong>Parent Companion</strong> when they're ready for something more.</p>
                 </div>
+
+                <div class="product-block">
+                    <div class="p-content reveal">
+                        <span class="p-badge premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg> Premium</span>
+                        <span class="p-eyebrow">Offline &bull; Private &bull; 2 minutes</span>
+                        <h3>Parent Companion</h3>
+                        <p class="p-subtitle">Offline Digital Reflection Companion</p>
+                        <p class="p-desc">An offline app for parents of autistic children. It stays on your device, takes about two minutes a day, and helps you hold onto the small moments that give you hope.</p>
+
+                        <div class="p-features">
+                            <div class="p-feature">
+                                <span class="p-feature-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+                                <div><h4>Private</h4><p>No account. No login. No cloud. Your data stays on your device.</p></div>
+                            </div>
+                            <div class="p-feature">
+                                <span class="p-feature-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+                                <div><h4>Offline</h4><p>Use it anywhere, anytime — even without an internet connection.</p></div>
+                            </div>
+                            <div class="p-feature">
+                                <span class="p-feature-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+                                <div><h4>2 Minutes</h4><p>Takes about two minutes a day.</p></div>
+                            </div>
+                            <div class="p-feature">
+                                <span class="p-feature-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+                                <div><h4>Human-centred</h4><p>Helps you hold onto the small moments that give you hope.</p></div>
+                            </div>
+                        </div>
+
+                        <div class="p-price-row">
+                            <div class="p-price gold">$19 <small>one-time</small></div>
+                            <!-- TODO: wire up real purchase link for Parent Companion ($19) — currently routes to Contact as a placeholder -->
+                            <button class="p-cta primary" onclick="window.location.href='#contact'">Learn More →</button>
+                        </div>
+                        <div class="p-footnote">— A KOODAL product —</div>
+                    </div>
+                    <div class="p-visual reveal reveal-d1">
+                        <div class="p-frame p-frame-gold">
+                            <span class="p-frame-badge premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg> Premium</span>
+                            <div class="p-frame-inner has-image">
+                                <img src="image/mobile.png" alt="The Parent Companion app's Today screen, showing a two-minute daily reflection space" loading="lazy" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <p style="text-align:center; margin-top:24px; font-size:0.82rem; color:var(--text-soft);" class="reveal">
-                ✦ Both are private by design, and both were made with real families in mind ✦
+            <div class="product-compare reveal">
+                <table>
+                    <caption>How they compare</caption>
+                    <thead>
+                        <tr><th scope="col"></th><th scope="col">Parent Companion</th><th scope="col">Small Moments of Joy</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">Format</th><td>Offline app</td><td>Printable, on paper</td></tr>
+                        <tr><th scope="row">Access</th><td>One-time purchase</td><td>Free download</td></tr>
+                        <tr><th scope="row">Privacy</th><td>Stays on your device — no cloud</td><td>No app, no login — nothing to collect</td></tr>
+                        <tr><th scope="row">Cost</th><td>$19</td><td>Free</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="text-align:center; margin-top:32px; font-size:0.82rem; color:var(--text-soft);" class="reveal">
+                Both are private by design, and both were made with real families in mind
             </p>
         </div>
     </section>
@@ -791,7 +1274,7 @@
     <section class="section" id="journey">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">🌱 Your Journey</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8"/><path d="M12 13c0-4 3-6.5 7-6.5 0 4-3 6.5-7 6.5z"/><path d="M12 13c0-3.5-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z"/></svg> Your Journey</span>
                 <h2>Your journey with <span class="gold">KOODAL</span></h2>
                 <p>Start simple. Grow gently. Every step is designed for real family life.</p>
             </div>
@@ -861,17 +1344,31 @@
     ================================================================ -->
     <section class="section section-alt" id="promise">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="badge">🤝 Our Promise</span>
-                <h2>Built with <span class="gold">trust</span></h2>
-                <p>Everything we create is guided by a simple set of principles.</p>
-            </div>
+            <div class="trust-editorial">
+                <div class="trust-statement reveal">
+                    <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg> Our Promise</span>
+                    <h2>Built with <span class="gold">trust</span></h2>
+                    <p>Everything we create is guided by a simple set of principles.</p>
+                </div>
 
-            <div class="promise-grid">
-                <div class="promise-item card-blue reveal"><span class="icon">🔒</span><h4>Privacy First</h4><p>No account. No login. No cloud. Your data stays on your device.</p></div>
-                <div class="promise-item card-sage reveal reveal-d1"><span class="icon">📱</span><h4>Works Offline</h4><p>Use it anywhere, anytime — even without an internet connection.</p></div>
-                <div class="promise-item card-rose reveal reveal-d2"><span class="icon">💛</span><h4>Your Data Stays Yours</h4><p>We never collect, analyse, or share your personal information.</p></div>
-                <div class="promise-item card-gold reveal reveal-d3"><span class="icon">🌿</span><h4>Built With Compassion</h4><p>Created from lived experience — not clinical theory or marketing hype.</p></div>
+                <div class="trust-principles">
+                    <div class="trust-principle card-blue reveal">
+                        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+                        <div><h4>Privacy First</h4><p>No account. No login. No cloud. Your data stays on your device.</p></div>
+                    </div>
+                    <div class="trust-principle card-sage reveal reveal-d1">
+                        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+                        <div><h4>Works Offline</h4><p>Use it anywhere, anytime — even without an internet connection.</p></div>
+                    </div>
+                    <div class="trust-principle card-rose reveal reveal-d2">
+                        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+                        <div><h4>Your Data Stays Yours</h4><p>We never collect, analyse, or share your personal information.</p></div>
+                    </div>
+                    <div class="trust-principle card-gold reveal reveal-d3">
+                        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-7 16-16 16z"/><path d="M4 20L13 11"/></svg></span>
+                        <div><h4>Built With Compassion</h4><p>Created from lived experience — not clinical theory or marketing hype.</p></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -882,50 +1379,64 @@
     <section class="section" id="resources">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">📚 Resources</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3v16H5zM10 4h3v16h-3zM16 5l3 .8v14.4L16 19z"/></svg> Resources</span>
                 <h2>Free tools, built on <span class="gold">trust</span></h2>
                 <p>Before anything else, we want to be useful. Free resources for families — no account, no catch — with paid tools like Parent Companion for when you want more.</p>
             </div>
 
-            <div class="promise-grid">
-                <div class="promise-item card-blue reveal"><span class="icon">📘</span><h4>Free eBooks</h4><p>Short, practical reads for the moments that are hardest to explain.</p></div>
-                <div class="promise-item card-sage reveal reveal-d1"><span class="icon">🖨️</span><h4>Printable Worksheets</h4><p>Paper tools for families who'd rather step away from a screen.</p></div>
-                <div class="promise-item card-rose reveal reveal-d2"><span class="icon">📰</span><h4>Evidence-Based Articles</h4><p>Research, translated into plain language — never technical jargon.</p></div>
-                <div class="promise-item card-gold reveal reveal-d3"><span class="icon">🧭</span><h4>Guides for Parents</h4><p>Gentle, practical guidance for everyday family life.</p></div>
+            <div class="resource-now reveal">
+                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg></span>
+                <div>
+                    <span class="resource-now-label">Free Resource</span>
+                    <h3>Small Moments of Joy</h3>
+                    <p>Small Moments of Joy is the first of these — more are on the way.</p>
+                    <a href="#products">See Small Moments of Joy &rarr;</a>
+                </div>
             </div>
-            <p style="text-align:center; margin-top:24px; font-size:0.82rem; color:var(--text-soft);" class="reveal">
-                ✦ Small Moments of Joy is the first of these — more are on the way ✦
-            </p>
+
+            <div class="resource-future">
+                <p class="resource-future-label reveal">More resources, coming soon</p>
+                <div class="resource-future-grid">
+                    <div class="resource-future-item reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg></span><div><h4>Free eBooks</h4><p>Short, practical reads for the moments that are hardest to explain.</p></div></div>
+                    <div class="resource-future-item reveal reveal-d1"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V4h12v5"/><rect x="4" y="9" width="16" height="8" rx="1.5"/><path d="M6 17h12v4H6z"/></svg></span><div><h4>Printable Worksheets</h4><p>Paper tools for families who'd rather step away from a screen.</p></div></div>
+                    <div class="resource-future-item reveal reveal-d2"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></span><div><h4>Evidence-Based Articles</h4><p>Research, translated into plain language — never technical jargon.</p></div></div>
+                    <div class="resource-future-item reveal reveal-d3"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6z"/></svg></span><div><h4>Guides for Parents</h4><p>Gentle, practical guidance for everyday family life.</p></div></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ================================================================
     RESEARCH FOR PARENTS
     ================================================================ -->
-    <section class="section section-alt" id="research">
+    <section class="section section-tint-blue" id="research">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">🔬 Research for Parents</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="20" y2="20"/></svg> Research for Parents</span>
                 <h2>Science, in <span class="gold">plain language</span></h2>
                 <p>Many parents struggle to make sense of complex scientific research. We're building a home for evidence, translated into everyday life.</p>
             </div>
 
-            <div class="growing-box card-blue reveal">
-                <span class="icon">🧩</span>
-                <h3>Evidence, told like a story.</h3>
-                <div class="sub">Coming soon to KOODAL.</div>
-                <p>
-                    Instead of publishing technical papers, we'll turn research into
-                    compassionate, easy-to-understand articles — grounded in real citations,
-                    told through the everyday experience of families, and reviewed with the
-                    same care as everything else we make.
-                </p>
-                <div class="future-pills">
-                    <span class="card-sage"><span class="icon">📖</span> Storytelling, not jargon</span>
-                    <span class="card-gold"><span class="icon">🔗</span> Original citations kept</span>
-                    <span class="card-blue"><span class="icon">✅</span> Scientifically accurate</span>
+            <div class="research-editorial">
+                <div class="research-lead reveal">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg></span>
+                    <h3>Evidence, told like a story.</h3>
+                    <div class="sub">Coming soon to KOODAL.</div>
                 </div>
-                <p style="font-size:0.78rem; color:var(--text-soft); margin-top:14px;">No dates. No hype. Just care.</p>
+                <div class="research-body reveal reveal-d1">
+                    <p>
+                        Instead of publishing technical papers, we'll turn research into
+                        compassionate, easy-to-understand articles — grounded in real citations,
+                        told through the everyday experience of families, and reviewed with the
+                        same care as everything else we make.
+                    </p>
+                    <div class="future-pills">
+                        <span class="card-sage"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg></span> Storytelling, not jargon</span>
+                        <span class="card-gold"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 15l6-6"/><path d="M8 12l-2 2a3.5 3.5 0 004.9 4.9l2-2"/><path d="M16 12l2-2a3.5 3.5 0 00-4.9-4.9l-2 2"/></svg></span> Original citations kept</span>
+                        <span class="card-blue"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg></span> Scientifically accurate</span>
+                    </div>
+                    <p class="research-note">No dates. No hype. Just care.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -936,13 +1447,13 @@
     <section class="section" id="growing">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">🌱 Growing Together</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8"/><path d="M12 13c0-4 3-6.5 7-6.5 0 4-3 6.5-7 6.5z"/><path d="M12 13c0-3.5-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z"/></svg> Growing Together</span>
                 <h2>Quietly building <span class="gold">more</span></h2>
                 <p>We're not in a hurry. Every companion we create takes time and care.</p>
             </div>
 
             <div class="growing-box card-sage reveal">
-                <span class="icon">🌳</span>
+                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#355C4A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M12 15v6"/></svg></span>
                 <h3>We're growing — gently.</h3>
                 <div class="sub">More companions are on the way.</div>
                 <p>
@@ -951,9 +1462,9 @@
                     more noise to their lives.
                 </p>
                 <div class="future-pills">
-                    <span class="card-blue"><span class="icon">🗂️</span> Memory Keeper</span>
-                    <span class="card-sage"><span class="icon">👵</span> Elder Companion</span>
-                    <span class="card-gold"><span class="icon">📖</span> Family Journal</span>
+                    <span class="card-blue"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a1 1 0 011-1h4l2 2h8a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1V7z"/></svg></span> Memory Keeper</span>
+                    <span class="card-sage"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg></span> Elder Companion</span>
+                    <span class="card-gold"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg></span> Family Journal</span>
                     <span class="more">+ more</span>
                 </div>
                 <p style="font-size:0.78rem; color:var(--text-soft); margin-top:14px;">No dates. No hype. Just care.</p>
@@ -964,10 +1475,10 @@
     <!-- ================================================================
     PHILOSOPHY
     ================================================================ -->
-    <section class="section section-alt" id="philosophy">
+    <section class="section section-tint-sage" id="philosophy">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">🌿 Philosophy</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-7 16-16 16z"/><path d="M4 20L13 11"/></svg> Philosophy</span>
                 <h2>Where people come <span class="gold">together</span></h2>
                 <p>Everything we make is meant to help people stay connected — to their families, their memories, and what's ahead.</p>
             </div>
@@ -975,7 +1486,7 @@
             <div class="philosophy-grid">
                 <div class="philosophy-visual reveal">
                     <div class="philosophy-visual-frame">
-                        <img src="images/koodal-philosophy.jpg" alt="KOODAL — an ancient Tamil word meaning a place where people come together, illustrated with a family, a river confluence, and family video calling" loading="lazy" />
+                        <img src="image/koodal-philosophy.png" alt="KOODAL — an ancient Tamil word meaning a place where people come together, illustrated with a family, a river confluence, and family video calling" loading="lazy" />
                     </div>
                 </div>
 
@@ -991,6 +1502,7 @@
                         <circle cx="146" cy="84" r="7" fill="#EAF1E9" stroke="#355C4A" stroke-width="1.8"/>
                         <circle cx="80" cy="50" r="11" fill="#355C4A"/>
                     </svg>
+                    <div class="philosophy-word" lang="ta">கூடல்</div>
                     <h3 style="color:var(--gold-deep); font-size:1.7rem; font-family:var(--font-display); font-weight:700; margin-bottom:3px;">KOODAL</h3>
                     <div style="font-size:0.94rem; color:var(--text-light); font-style:italic; font-family:var(--font-display); margin-bottom:12px;">Where People Come Together.</div>
                     <p style="color:var(--text-light); font-size:0.98rem; line-height:1.85;">
@@ -1006,88 +1518,11 @@
                         distance or the kind of day they're having.
                     </p>
                     <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px;">
-                        <span style="display:inline-block; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;">🔒 Private by Design</span>
-                        <span style="display:inline-block; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;">📱 Works Offline</span>
-                        <span style="display:inline-block; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;">🌍 No Cloud</span>
-                        <span style="display:inline-block; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-deep); color:var(--cream-light); font-size:0.76rem; font-weight:600;">💛 Human-Centred</span>
+                        <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> Private by Design</span>
+                        <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.2"/><line x1="11" y1="18" x2="13" y2="18"/></svg> Works Offline</span>
+                        <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-pale); border:1px solid rgba(169,122,28,0.14); color:var(--gold-deep); font-size:0.76rem; font-weight:600;"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg> No Cloud</span>
+                        <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 18px; border-radius:var(--radius-full); background:var(--gold-deep); color:var(--cream-light); font-size:0.76rem; font-weight:600;"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg> Human-Centred</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    ABOUT
-    ================================================================ -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="text reveal">
-                    <span class="badge" style="display:inline-block; margin-bottom:8px;">About</span>
-                    <h2>Human-Centred <span class="gold">Experiences</span></h2>
-                    <p class="lead">
-                        <strong>KOODAL STUDIO</strong> was created to fill a gap — a gap between
-                        the clinical world and the emotional world of families.
-                    </p>
-                    <p class="lead">
-                        We don't collect your data. We don't analyse your child.
-                        We don't tell you how to parent. We simply help you notice
-                        the moments that matter.
-                    </p>
-                    <div class="quote-block">
-                        "We don't collect your data. We don't analyse your child.
-                        We don't tell you how to parent. We simply help you notice
-                        the moments that matter."
-                    </div>
-                    <p style="font-size:0.87rem; color:var(--text-soft); margin-top:10px;">
-                        <strong style="color:var(--gold-deep);">KOODAL STUDIO</strong> —
-                        Creating Human-Centred Experiences.
-                    </p>
-                    <div class="values">
-                        <span>🔒 Privacy</span><span>💛 Compassion</span><span>🌿 Calm</span>
-                        <span>🤝 Trust</span><span>🕊️ Reflection</span><span>🔗 Connection</span>
-                    </div>
-                </div>
-                <div class="visual reveal reveal-d1">
-                    <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <radialGradient id="aboutBgK" cx="50%" cy="45%" r="65%">
-                                <stop offset="0%" stop-color="#E7F0E9" stop-opacity="1"/>
-                                <stop offset="100%" stop-color="#FBF8F2" stop-opacity="1"/>
-                            </radialGradient>
-                            <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#2B2C26" flood-opacity="0.12"/>
-                            </filter>
-                        </defs>
-                        <rect width="340" height="300" fill="url(#aboutBgK)" rx="24"/>
-                        <line x1="170" y1="150" x2="170" y2="80" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <line x1="170" y1="150" x2="250" y2="122" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <line x1="170" y1="150" x2="250" y2="202" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <line x1="170" y1="150" x2="170" y2="238" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <line x1="170" y1="150" x2="90" y2="202" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <line x1="170" y1="150" x2="90" y2="122" stroke="#CBD9CD" stroke-width="1.75"/>
-                        <circle cx="170" cy="150" r="36" fill="#3F5F4E" filter="url(#nodeShadow)"/>
-                        <text x="170" y="146" font-family="'Fraunces', serif" font-size="12.5" fill="#FBF8F2" text-anchor="middle" font-weight="700" letter-spacing="0.02em">KOODAL</text>
-                        <text x="170" y="160" font-family="'Inter', sans-serif" font-size="6" fill="#E7F0E9" text-anchor="middle" letter-spacing="1.5">OUR VALUES</text>
-                        <circle cx="170" cy="60" r="30" fill="#ECF3F6" stroke="#CFDFE6" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="170" y="56" font-size="18" text-anchor="middle">🔒</text>
-                        <text x="170" y="98" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Privacy</text>
-                        <circle cx="256" cy="112" r="30" fill="#F9F0ED" stroke="#E6D0C8" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="256" y="108" font-size="18" text-anchor="middle">💛</text>
-                        <text x="256" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Compassion</text>
-                        <circle cx="256" cy="205" r="30" fill="#FBF4E4" stroke="#ECDCB4" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="256" y="201" font-size="18" text-anchor="middle">🤝</text>
-                        <text x="256" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Trust</text>
-                        <circle cx="170" cy="248" r="30" fill="#EFF6F1" stroke="#D2E5D8" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="170" y="244" font-size="18" text-anchor="middle">🌿</text>
-                        <text x="170" y="286" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Calm</text>
-                        <circle cx="84" cy="205" r="30" fill="#EEF3F8" stroke="#D2DFEC" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="84" y="201" font-size="18" text-anchor="middle">🕊️</text>
-                        <text x="84" y="243" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Reflection</text>
-                        <circle cx="84" cy="112" r="30" fill="#F1F8EC" stroke="#DCEBCE" stroke-width="2" filter="url(#nodeShadow)"/>
-                        <text x="84" y="108" font-size="18" text-anchor="middle">🔗</text>
-                        <text x="84" y="150" font-family="'Inter', sans-serif" font-size="10" fill="#2B2C26" text-anchor="middle" font-weight="700">Connection</text>
-                    </svg>
                 </div>
             </div>
         </div>
@@ -1096,10 +1531,10 @@
     <!-- ================================================================
     STORIES
     ================================================================ -->
-    <section class="section section-alt" id="stories">
+    <section class="section section-tint-rose" id="stories">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">📖 Stories</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/></svg> Stories</span>
                 <h2>The kind of thing parents <span class="gold">tell us</span></h2>
                 <p>We're just getting started, so these are reflections of common experiences we've heard, not verified user quotes yet. Once real stories come in, we'll share those instead.</p>
             </div>
@@ -1107,12 +1542,15 @@
             <div class="stories-grid">
                 <div class="story-card card-blue reveal">
                     <p class="story-text">"I used to feel so alone. Then I read another parent's story — and for the first time, I felt understood. That's why I'm here."</p>
+                    <span class="story-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg> Illustrative reflection</span>
                 </div>
                 <div class="story-card card-sage reveal reveal-d1">
                     <p class="story-text">"The hardest part was not knowing if my child understood me. Then one day, they showed me they did — without a single word."</p>
+                    <span class="story-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg> Illustrative reflection</span>
                 </div>
                 <div class="story-card card-gold reveal reveal-d2">
                     <p class="story-text">"This companion helped me see that progress isn't always big. Sometimes it's a smile, a new sound, or a quiet moment."</p>
+                    <span class="story-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg> Illustrative reflection</span>
                 </div>
             </div>
 
@@ -1129,7 +1567,7 @@
     <section class="section section-alt" id="disclaimer">
         <div class="container">
             <div class="disclaimer-box reveal">
-                <span class="disclaimer-icon">🩺</span>
+                <span class="disclaimer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r="0.9" fill="var(--gold-deep)" stroke="none"/></svg></span>
                 <div class="disclaimer-text">
                     <h3>A note on support, not medical care</h3>
                     <p>
@@ -1149,24 +1587,60 @@
     </section>
 
     <!-- ================================================================
+    FAQ
+    ================================================================ -->
+    <section class="section section-alt" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 014.9.8c0 1.7-2.4 2-2.4 3.7"/><line x1="12" y1="17" x2="12" y2="17.2"/></svg> FAQ</span>
+                <h2>Common <span class="gold">questions</span></h2>
+                <p>A few things parents ask us before getting started.</p>
+            </div>
+
+            <div class="faq-list reveal">
+                <details class="faq-item">
+                    <summary>Is my data really private?<span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+                    <p>Yes. Parent Companion has no account, no login, and no cloud sync — everything you write stays on your own device. We don't collect, see, or store your reflections anywhere.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is this a medical or diagnostic tool?<span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+                    <p>No. Our tools are reflection spaces, not medical devices — they can't diagnose anything and aren't a substitute for therapy or clinical care. See our <a href="#disclaimer" style="color:var(--gold-deep);">full disclaimer</a> for details.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What devices does Parent Companion work on?<span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+                    <p><!-- TODO: confirm exact supported platforms/OS versions before launch --> We're finalizing the supported device list. Write to us at <a href="mailto:hellokoodalstudio@gmail.com" style="color:var(--gold-deep);">hellokoodalstudio@gmail.com</a> and we'll confirm compatibility with your device.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I get a refund?<span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+                    <p><!-- TODO: confirm official refund policy before launch --> Our refund policy is being finalized. If something isn't right, email us — we'll work it out with you personally.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Small Moments of Joy really free?<span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+                    <p>Yes, completely — no card, no account, no catch. It's our way of giving something useful to every family, whether or not you ever try Parent Companion.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
     CONTACT
     ================================================================ -->
     <section class="section" id="contact">
         <div class="container">
             <div class="section-header reveal">
-                <span class="badge">📬 Contact</span>
+                <span class="badge"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Contact</span>
                 <h2>Get in <span class="gold">touch</span></h2>
                 <p>We're here to help. Reach out anytime.</p>
             </div>
 
             <div class="contact-row reveal">
                 <div class="contact-item card-blue">
-                    <span class="icon">📧</span>
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
                     <h4>Email</h4>
                     <p><a href="mailto:hellokoodalstudio@gmail.com" style="color:inherit; text-decoration:none;">hellokoodalstudio@gmail.com</a></p>
                 </div>
                 <div class="contact-item card-sage">
-                    <span class="icon">🌐</span>
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg></span>
                     <h4>Website</h4>
                     <p>koodalstudio.com</p>
                 </div>
@@ -1177,6 +1651,17 @@
                 <p>And if you just need someone to talk to, or a bit of guidance that isn't medical advice, reach out anyway. We're not doctors, so we can't treat or diagnose anything — but we'll listen, and we'll help however we honestly can.</p>
                 <p class="contact-response">We read every email ourselves and usually reply within 24 hours.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+    CLOSING CTA
+    ================================================================ -->
+    <section class="closing-cta">
+        <div class="container">
+            <h2>Small moments matter.</h2>
+            <p>You don't have to do this alone, and you don't have to get it all figured out today. Start with one quiet moment — we'll be here.</p>
+            <a href="#products" class="btn-primary">Explore Products →</a>
         </div>
     </section>
 
@@ -1214,7 +1699,7 @@
             </div>
 
             <div class="ownership">
-                <span class="ownership-icon">©️</span>
+                <span class="ownership-icon" style="font-family:var(--font-body); font-size:1.1rem;">&copy;</span>
                 <div>
                     <strong>© 2026 KOODAL STUDIO. All rights reserved.</strong>
                     <p>KOODAL, the KOODAL mark, and all product names, designs, and content on this site are the intellectual property of KOODAL STUDIO.</p>
@@ -1223,11 +1708,11 @@
 
             <div class="bottom">
                 <div class="legal">
-                    <a href="#contact">Privacy Policy</a>
-                    <a href="#contact">Terms of Use</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
                     <a href="#disclaimer">Medical Disclaimer</a>
                 </div>
-                <span class="koodal-mark">✦ A KOODAL product ✦</span>
+                <span class="koodal-mark">— A KOODAL product —</span>
             </div>
         </div>
     </footer>
